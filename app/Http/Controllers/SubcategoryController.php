@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Subcategory;
 use App\Models\Category;
 use Auth;
-
-use App\User;
-
-class CategoryController extends Controller
+class SubcategoryController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +21,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('admin/category.index')->with('categories', $categories);
+        //
     }
 
     /**
@@ -34,7 +31,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-         return view('admin/category.create');
+        $categories=Category::all();
+        return view('admin/subcat.create',compact('categories'));
+
+        //return view('admin/subcat.create');
     }
 
     /**
@@ -45,27 +45,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'category_name'=>'required',
-            
-            'type' =>'required'
-
-
-        ]);
-         $id = Auth::id();
-        
-        $form_data = array(
-            
-            'user_id'=>(string)$id,
-            'category_name' => $request->category_name, 
-            'type'  =>$request->type
-
-
-        );
-
-        Category::create($form_data);
-
-       return redirect()->back()->with('Done','Category Added Successfully');
+        //
     }
 
     /**
@@ -87,8 +67,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::find($id);
-        return view('admin/category.edit',compact('categories'));
+        //
     }
 
     /**
@@ -100,21 +79,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-            $request->validate([
-                'category_name'=>'required',
-                'type'=>'required'
-                ]);
-                //$id = Auth::id();
-
-            $categories = Category::find($id);
-            $categories->category_name=$request->get('category_name');
-            $categories->type=$request->get('type');
-
-
-            $categories->save();
-            return redirect('admin/category/catshow')->with('Success','category Updated Successfully');
-
+        //
     }
 
     /**
@@ -125,8 +90,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
-        return redirect()->back()->with('Success','Data Deleted');
+        //
     }
 }

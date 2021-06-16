@@ -76,10 +76,47 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </a>
                                 <ul class="treeview-menu">
                                     <li><a href="{{ route('catcreate')}}"><i class="fa fa-angle-right"></i> Add Category</a></li>
-                                    <li><a href=""><i class="fa fa-angle-right"></i> Manage Category</a></li>
+                                    <li><a href="{{ route('catshow')}}"><i class="fa fa-angle-right"></i> Manage Category</a></li>
 
                                 </ul>
                             </li>
+
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-edit"></i> <span>Subcategory</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="{{ route('subcreate') }}"><i class="fa fa-angle-right"></i> Add Subcategory</a></li>
+                                    <li><a href=""><i class="fa fa-angle-right"></i> Manage Subcategory</a></li>
+
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-edit"></i> <span>Brand</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="{{ route('brandcreate') }}"><i class="fa fa-angle-right"></i> Add Brand</a></li>
+                                    <li><a href="{{ route('brandshow') }}"><i class="fa fa-angle-right"></i> Manage Brand</a></li>
+
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-edit"></i> <span>Country</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="{{ route('coutcreate') }}"><i class="fa fa-angle-right"></i> Add Country</a></li>
+                                    <li><a href="{{ route('coutshow') }}"><i class="fa fa-angle-right"></i> Manage Country</a></li>
+
+                                </ul>
+                            </li>
+
                            
                             <li class="treeview">
                                 <a href="">

@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\Brand;
 use Auth;
 
-use App\User;
-
-class CategoryController extends Controller
+class BrandController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +21,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('admin/category.index')->with('categories', $categories);
+        $brands = Brand::all();
+        return view('admin/brand.index')->with('brands', $brands);
     }
 
     /**
@@ -34,7 +32,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-         return view('admin/category.create');
+        return view('admin/brand.create');
     }
 
     /**
@@ -46,9 +44,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_name'=>'required',
-            
-            'type' =>'required'
+            'brand_name'=>'required'
 
 
         ]);
@@ -57,15 +53,14 @@ class CategoryController extends Controller
         $form_data = array(
             
             'user_id'=>(string)$id,
-            'category_name' => $request->category_name, 
-            'type'  =>$request->type
+            'brand_name' => $request->brand_name
 
 
         );
 
-        Category::create($form_data);
+        Brand::create($form_data);
 
-       return redirect()->back()->with('Done','Category Added Successfully');
+       return redirect()->back()->with('Done','Brand Added Successfully');
     }
 
     /**
@@ -87,8 +82,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::find($id);
-        return view('admin/category.edit',compact('categories'));
+        $brands = Brand::find($id);
+        return view('admin/brand.edit',compact('brands'));
     }
 
     /**
@@ -100,20 +95,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-            $request->validate([
-                'category_name'=>'required',
-                'type'=>'required'
-                ]);
-                //$id = Auth::id();
+        $request->validate([
+            'brand_name'=>'required'
+            ]);
+            //$id = Auth::id();
 
-            $categories = Category::find($id);
-            $categories->category_name=$request->get('category_name');
-            $categories->type=$request->get('type');
-
-
-            $categories->save();
-            return redirect('admin/category/catshow')->with('Success','category Updated Successfully');
+        $brands = Brand::find($id);
+        $brands->brand_name=$request->get('brand_name');
+        $brands->save();
+        return redirect('admin/brand/brandshow')->with('Success','Brand Updated Successfully');
 
     }
 
@@ -125,8 +115,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        $brands = Brand::findOrFail($id);
+        $brands->delete();
         return redirect()->back()->with('Success','Data Deleted');
     }
 }

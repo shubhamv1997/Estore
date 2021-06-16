@@ -3,19 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\Country;
 use Auth;
-
-use App\User;
-
-class CategoryController extends Controller
+class CountryController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +19,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('admin/category.index')->with('categories', $categories);
+        $countries = Country::all();
+        return view('admin/country.index')->with('countries', $countries);
     }
 
     /**
@@ -34,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-         return view('admin/category.create');
+        return view('admin/country.create');
     }
 
     /**
@@ -46,9 +42,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_name'=>'required',
-            
-            'type' =>'required'
+            'country_name'=>'required'
 
 
         ]);
@@ -57,15 +51,14 @@ class CategoryController extends Controller
         $form_data = array(
             
             'user_id'=>(string)$id,
-            'category_name' => $request->category_name, 
-            'type'  =>$request->type
+            'country_name' => $request->country_name
 
 
         );
 
-        Category::create($form_data);
+        Country::create($form_data);
 
-       return redirect()->back()->with('Done','Category Added Successfully');
+       return redirect()->back()->with('Done','Country Added Successfully');
     }
 
     /**
@@ -87,8 +80,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::find($id);
-        return view('admin/category.edit',compact('categories'));
+        $countries = Country::find($id);
+        return view('admin/country.edit',compact('countries'));
     }
 
     /**
@@ -100,20 +93,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-            $request->validate([
-                'category_name'=>'required',
-                'type'=>'required'
-                ]);
-                //$id = Auth::id();
+        $request->validate([
+            'country_name'=>'required'
+            ]);
+            //$id = Auth::id();
 
-            $categories = Category::find($id);
-            $categories->category_name=$request->get('category_name');
-            $categories->type=$request->get('type');
-
-
-            $categories->save();
-            return redirect('admin/category/catshow')->with('Success','category Updated Successfully');
+        $countries = Country::find($id);
+        $countries->country_name=$request->get('country_name');
+        $countries->save();
+        return redirect('admin/country/countryshow')->with('Success','country Updated Successfully');
 
     }
 
@@ -125,8 +113,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
+        $countries = Country::findOrFail($id);
+        $countries->delete();
         return redirect()->back()->with('Success','Data Deleted');
     }
 }
