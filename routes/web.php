@@ -85,6 +85,54 @@ Route::patch('admin/country/update/{id}',[App\Http\Controllers\CountryController
 ##################################################################
 Route::get('admin/subcat', [App\Http\Controllers\SubcategoryController::class,'create'])->name('subcreate');
 Route::post('admin/subcat', [App\Http\Controllers\SubcategoryController::class,'store'])->name('substore');
+Route::get('admin/subcat/subshow', [App\Http\Controllers\SubcategoryController::class,'index'])->name('subshow');
+Route::delete('admin/subcat/destroy/{id}',[App\Http\Controllers\SubcategoryController::class,'destroy'])->name('subdestroy');
+Route::get('admin/subcat/edit/{id}',[App\Http\Controllers\SubcategoryController::class,'edit'])->name('subedit');
+Route::patch('admin/subcat/update/{id}',[App\Http\Controllers\SubcategoryController::class,'update'])->name('subupdate');
+
+
+
+Route::post('gettype',[App\Http\Controllers\SubcategoryController::class,'getType'])->name('getType');
+
+
+##################################################################
+###############                           ########################
+############### Admin Add City Route      ########################
+###############                           ########################
+##################################################################
+Route::get('admin/city', [App\Http\Controllers\CityController::class,'create'])->name('citycreate');
+Route::post('admin/city', [App\Http\Controllers\CityController::class,'store'])->name('citystore');
+Route::get('admin/city/cityshow', [App\Http\Controllers\CityController::class,'index'])->name('cityshow');
+Route::delete('admin/city/destroy/{id}',[App\Http\Controllers\CityController::class,'destroy'])->name('citydestroy');
+Route::get('admin/city/edit/{id}',[App\Http\Controllers\CityController::class,'edit'])->name('cityedit');
+Route::patch('admin/city/update/{id}',[App\Http\Controllers\CityController::class,'update'])->name('cityupdate');
+
+
+##################################################################
+###############                           ########################
+############### Admin Approval Retailer Route      ###############
+###############                           ########################
+##################################################################
+
+Route::get('admin/approveretailer', [App\Http\Controllers\ApprovalRetailerController::class,'create'])->name('retailercreate');
+Route::post('admin/approveretailer', [App\Http\Controllers\ApprovalRetailerController::class,'store'])->name('retailerstore');
+
+Route::get('admin/approveretailer/retailershow', [App\Http\Controllers\ApprovalRetailerController::class,'index'])->name('retailershow');
+
+
+
+Route::post('getcity',[App\Http\Controllers\ApprovalRetailerController::class,'getCity'])->name('getCity');
+
+
+
+##################################################################
+###############                           ########################
+############### Admin Approval Product Route      ###############
+###############                           ########################
+##################################################################
+
+Route::get('admin/approveproduct/ApprovalProductshow', [App\Http\Controllers\ApprovalProductController::class,'index'])->name('ApprovalProductshow');
+
 
 
 

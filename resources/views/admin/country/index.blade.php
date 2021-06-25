@@ -13,7 +13,7 @@
 						<h4>Show Country Data:</h4>
                         @if(session()->get('Success'))
                             <div class="alert alert-success" role="alert">
-                                <strong><i class="icon fa fa-check"></i>Well done! Data Deleted</strong> {{ session()->get('Done') }}
+                                <strong><i class="icon fa fa-check"></i>Well done!</strong> {{ session()->get('Done') }}
                             </div>
                             @endif
 

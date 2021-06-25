@@ -6,21 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Subcategory extends Model
+class City extends Model
 {
     //use HasFactory;
     use SoftDeletes;
     protected $fillable = [
-        'type',
-        'category_id',
-        'subcategory_name',
+        'country_id',
+        'city_name',
         'user_id'
     ];
 
-    public function category()
+
+    public function country()
     {
-            return $this->belongsTo(Category::class);
+            return $this->belongsTo(Country::class);
     }
-
-
 }

@@ -5,15 +5,15 @@
 <div id="page-wrapper">
 			<div class="main-page" >
 				<div class="tables">
-					<h2 class="title1">Category</h2>
+					<h2 class="title1">Subcategory</h2>
 					
 					
 					
 					<div class="table-responsive bs-example widget-shadow">
-						<h4>Show Category Data:</h4>
+						<h4>Show Subcategory Data:</h4>
                         @if(session()->get('Success'))
                             <div class="alert alert-success" role="alert">
-                                <strong><i class="icon fa fa-check"></i>Well done!</strong> {{ session()->get('Done') }}
+                                <strong><i class="icon fa fa-check"></i>Well done! </strong> {{ session()->get('Done') }}
                             </div>
                             @endif
 
@@ -21,22 +21,24 @@
                              <thead> 
                                 <tr> 
                                     <th>#</th> 
-                                    <th>Category Name</th> 
-                                    <th>Category Type</th>
+                                    <th>Category Type</th> 
+                                    <th>Category Name</th>
+                                    <th>Subcategory Name</th>
                                     <th>Edit</th>
                                     <th>Delete</th> 
                                 </tr> 
                             </thead> 
                             <tbody> 
-                            @if(count($categories) >= 1 )
-                                @foreach ($categories as $cat)
+                            @if(count($subcategories) >= 1 )
+                                @foreach ($subcategories as $subcat)
                                 <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $cat->category_name }}</td>
-                                <td>{{ $cat->type }}</td>
-                                <td><a href="{{ route('catedit',$cat->id)}}" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i></a></i></td>
+                                <td>{{ $subcat->type }}</td>
+                                <td>{{ $subcat->category['category_name']}}</td>
+                                <td>{{ $subcat->subcategory_name}}</td>
+                                <td><a href="{{ route('subedit',$subcat->id)}}" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i></a></i></td>
                                 <td>
-                                <form action="{{ route('catdestroy',$cat->id)}}" method="post">
+                                <form action="{{ route('subdestroy',$subcat->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     

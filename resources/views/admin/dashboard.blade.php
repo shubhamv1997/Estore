@@ -88,7 +88,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </a>
                                 <ul class="treeview-menu">
                                     <li><a href="{{ route('subcreate') }}"><i class="fa fa-angle-right"></i> Add Subcategory</a></li>
-                                    <li><a href=""><i class="fa fa-angle-right"></i> Manage Subcategory</a></li>
+                                    <li><a href="{{ route('subshow') }}"><i class="fa fa-angle-right"></i> Manage Subcategory</a></li>
 
                                 </ul>
                             </li>
@@ -117,15 +117,39 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </ul>
                             </li>
 
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-edit"></i> <span>City</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="{{ route('citycreate') }}"><i class="fa fa-angle-right"></i> Add City</a></li>
+                                    <li><a href="{{ route('cityshow') }}"><i class="fa fa-angle-right"></i> Manage City</a></li>
+
+                                </ul>
+                            </li>
+
                            
                             <li class="treeview">
-                                <a href="">
+                                <a href="#">
+                                    <i class="fa fa-edit"></i> <span>Retailer</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="{{ route('retailercreate') }}"><i class="fa fa-angle-right"></i> Add Retailer</a></li>
+                                    <li><a href="{{ route('retailershow') }}"><i class="fa fa-angle-right"></i> Approval Retailer</a></li>
+
+                                </ul>
+                            </li>
+
+                            <li class="treeview">
+                                <a href="{{ route('retailershow') }}">
                                 <i class="fa fa-table"></i>
                                 <span>Approve Retailer</span>
                                 </a>
                             </li>
                             <li class="treeview">
-                                <a href="">
+                                <a href="{{ route('ApprovalProductshow') }}">
                                 <i class="fa fa-table"></i>
                                 <span>Approve Products</span>
                                 </a>

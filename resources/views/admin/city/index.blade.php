@@ -5,12 +5,12 @@
 <div id="page-wrapper">
 			<div class="main-page" >
 				<div class="tables">
-					<h2 class="title1">Category</h2>
+					<h2 class="title1">City</h2>
 					
 					
 					
 					<div class="table-responsive bs-example widget-shadow">
-						<h4>Show Category Data:</h4>
+						<h4>Show City Data:</h4>
                         @if(session()->get('Success'))
                             <div class="alert alert-success" role="alert">
                                 <strong><i class="icon fa fa-check"></i>Well done!</strong> {{ session()->get('Done') }}
@@ -21,22 +21,22 @@
                              <thead> 
                                 <tr> 
                                     <th>#</th> 
-                                    <th>Category Name</th> 
-                                    <th>Category Type</th>
+                                    <th>Country Name</th>
+                                    <th>City Name</th>
                                     <th>Edit</th>
                                     <th>Delete</th> 
                                 </tr> 
                             </thead> 
                             <tbody> 
-                            @if(count($categories) >= 1 )
-                                @foreach ($categories as $cat)
+                            @if(count($Cities) >= 1 )
+                                @foreach ($Cities as $c)
                                 <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $cat->category_name }}</td>
-                                <td>{{ $cat->type }}</td>
-                                <td><a href="{{ route('catedit',$cat->id)}}" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i></a></i></td>
+                                <td>{{ $c->country['country_name']}}</td>
+                                <td>{{ $c->city_name}}</td>
+                                <td><a href="{{ route('cityedit',$c->id)}}" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i></a></i></td>
                                 <td>
-                                <form action="{{ route('catdestroy',$cat->id)}}" method="post">
+                                <form action="{{ route('citydestroy',$c->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     

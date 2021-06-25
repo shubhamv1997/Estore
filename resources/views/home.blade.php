@@ -72,7 +72,47 @@
                     <div class="mid-content-top charts-grids">
                         <div class="middle-content">
                             <h4 class="title">Show Order</h4>
-                            <table class="table table-bordered"> <thead> <tr> <th>#</th> <th>Cutomer Name</th> <th>Date of Order</th> <th>Product Name</th> <th>Price</th> <th>Status</th> <th>Quantity</th> </tr> </thead> <tbody> <tr> <th scope="row">1</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> <tr> <th scope="row">2</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> <tr> <th scope="row">3</th> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> <td>Table cell</td> </tr> </tbody> </table>
+                            <table class="table table-bordered"> <thead> 
+                            <tr>
+                                 <th>#</th> 
+                                 <th>Cutomer Name</th>
+                                  <th>Date of Order</th> 
+                                  <th>Product Name</th> 
+                                  <th>Price</th>
+                                   <th>Status</th> 
+                                   <th>Quantity</th>
+                             </tr> 
+                             </thead> 
+                             <tbody> 
+                             <tr>
+                                 <th scope="row">1</th> 
+                                 <td>Table cell</td>
+                                  <td>Table cell</td>
+                                 <td>Table cell</td>
+                                 <td>Table cell</td>
+                                 <td>Table cell</td> 
+                                <td>Table cell</td> 
+                            </tr> 
+                            <tr>
+                                 <th scope="row">2</th>
+                                 <td>Table cell</td> 
+                                 <td>Table cell</td> 
+                                 <td>Table cell</td> 
+                                 <td>Table cell</td> 
+                                 <td>Table cell</td> 
+                                 <td>Table cell</td> 
+                            </tr> 
+                            <tr>
+                                 <th scope="row">3</th>
+                                <td>Table cell</td>
+                                 <td>Table cell</td> 
+                                 <td>Table cell</td> 
+                                 <td>Table cell</td> 
+                                 <td>Table cell</td> 
+                                 <td>Table cell</td> 
+                            </tr> 
+                        </tbody> 
+                    </table>
 
                         </div>
                         <!--//sreen-gallery-cursual---->
