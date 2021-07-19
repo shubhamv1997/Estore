@@ -28,8 +28,16 @@ class ApprovalRetailerController extends Controller
      */
     public function index()
     {
-        //return view('admin/city.index',compact('Cities','countries'));
-        return view('admin/approveretailer.index');
+
+        $Retailers=DB::table('retailers')
+        ->select('retailers.*','countries.country_name','cities.city_name')
+        ->join('countries','countries.id','=','retailers.business_country')
+        ->join('cities','cities.id','=','retailers.business_city')
+        ->get();
+
+
+        return view('admin/approveretailer.index',compact('Retailers'));
+
     }
 
     /**
@@ -92,6 +100,8 @@ class ApprovalRetailerController extends Controller
          DB::beginTransaction();
          try{
 
+            
+
            $retailer = new Retailer();
            $retailer->user_id = $id;
            $retailer->first_name = $request->first_name;
@@ -109,28 +119,25 @@ class ApprovalRetailerController extends Controller
            $retailer->business_country = $request->business_country;
            $retailer->business_city = $request->business_city;
            $retailer->firstly_charges = $request->firstly_charges;
-           $retailer->discount = $request->discount;
-           $retailer->discount_amount = $request->discount_amount;
-          //$after_discount = $request->discount/$product->original_price) * 100;
-           //echo (int)(($request->firstly_charges * $request->discount_amount )/ 100);
+           $retailer->discount = $request->discount;  /**Radio button value store here */
+
+           $retailer->discount_amount = $request->discount_amount; /* how many discount */
            
            $discounted_price = (int)($request->firstly_charges) - (int)(($request->firstly_charges * $request->discount_amount )/ 100);
-          //$discounted_price="300";
-           $retailer->after_discount = $discounted_price;
+          /*discount calculation here */
+
+           $retailer->after_discount = $discounted_price; /*after calculation amount */
+           
+
+
            $retailer->monthly_charges = $request->monthly_charges;
-           $approval="unapproval";
-           $block="block";
+           $approval="approval";
+           $block="unblock";
            $retailer->approval = $approval;
            $retailer->block=$block;
 
            $retailer->save();
 
-           $bank = new Bank();
-           $bank->user_id = $id;
-           $bank->bank_name = $request->bank_name;
-           $bank->account_number = $request->account_number;
-           $bank->ifsc = $request->ifsc;
-           $bank->save();
 
             $type="Retailer";
             $name=$request->get('first_name').' '.$request->get('last_name');
@@ -147,6 +154,15 @@ class ApprovalRetailerController extends Controller
            'password'=>Hash::make($request->get('password')),
            'remember_token'=>$remember_token
        ]);
+
+       
+       $bank = new Bank();
+       $bank ->user_id = $User->id;
+       //$bank->user_id = $id;
+       $bank->bank_name = $request->bank_name;
+       $bank->account_number = $request->account_number;
+       $bank->ifsc = $request->ifsc;
+       $bank->save();
 
            
          

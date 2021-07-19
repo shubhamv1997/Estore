@@ -45,13 +45,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'category_name'=>'required',
+      //  $request->validate([
+         //   'category_name'=>'required',
             
-            'type' =>'required'
+          //  'type' =>'required'
 
 
-        ]);
+       // ]);
+
+       $this->validate($request, [
+        'category_name'=>'required|max:50|unique:categories,category_name', 
+        'type'=>'required|max:50|unique:categories,type', 
+    ]);
+
          $id = Auth::id();
         
         $form_data = array(

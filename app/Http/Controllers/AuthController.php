@@ -29,10 +29,10 @@ class AuthController extends Controller
              
            //return redirect('userhome')->with('Done','Successfully Login as User');
             }
-            elseif($type=="Vendor")
+            elseif($type=="Retailer")
             {
               
-           //return redirect('vhome')->with('Success','Successfully Login as Vendor');
+           return redirect('rhome')->with('Success','Successfully Login as Retailer');
             }
            
             else
