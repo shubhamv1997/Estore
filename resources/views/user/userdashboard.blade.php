@@ -44,8 +44,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="agile-login">
 				<ul>
-					<li><a href="#"> Create Account Vendor</a></li>
-					<li><a href="#">Vendor Login</a></li>
+					<!--<li><a href="#"> Create Account Vendor</a></li>-->
+					<li><a href="{{ route('retailerlogin')}}">Retailer Login</a></li>
 					
 					
 				</ul>
@@ -70,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.html">E-Commerce</a></h1>
+				<h1><a href="{{ route('home') }}">E-Commerce</a></h1>
 			</div>
 		
 			
@@ -93,7 +93,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="index.html" class="act">Home</a></li>	
+									<li class="active"><a href="{{ route('home') }}" class="act">Home</a></li>	
 									<li><a href="about.html">About</a></li>
 									<!-- Mega Menu -->
 									<li class="dropdown">
@@ -103,13 +103,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
 														<h6>All Men's Collections</h6>
-														<li><a href="#">Clothing</a></li>
-														<li><a href="#">Footwear</a></li>
-														<li><a href="#">Backpacks</a></li>
-														<li><a href="#">Watches</a></li>
-														<li><a href="#"> Sportswear </a></li>
-														<li><a href="#">Sunglasses</a></li>
-													</ul>
+														
+														@foreach($submen as $m)
+                                                    <li><a href="{{ route('showproducts',$m->id)}}">{{ $m->subcategory_name}}</a></li>
+                                                        @endforeach
+                    
+														</ul>
 												</div>	
 												
 											</div>
@@ -122,13 +121,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
 														<h6>All Women's Collections</h6>
-														<li><a href="#">Clothing</a></li>
-														<li><a href="#">Footwear</a></li>
-														<li><a href="#">Beauty</a></li>
-														<li><a href="#">Fashion Jewellery</a></li>
-														<li><a href="#"> Watches </a></li>
-														<li><a href="#">Handbags</a></li>
-													</ul>
+														
+														@foreach($subwomen as $w)
+                                                    <li><a href="">{{ $w->subcategory_name}}</a></li>
+                                                        @endforeach
+                    
+														</ul>
 												</div>
 												
 												
@@ -142,20 +140,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
 														<h6>All Kids's</h6>
-														<li><a href="#">Boys's Clothing</a></li>
-														<li><a href="#">Girl's Clothing</a></li>
-														<li><a href="#">Footwear</a></li>
-														<li><a href="#">Baby Clothing</a></li>
-														<li><a href="#"> School Bags</a></li>
-														<li><a href="#">Footwear</a></li>
-													</ul>
+														@foreach($subkids as $k)
+                                                    <li><a href="">{{ $k->subcategory_name}}</a></li>
+                                                        @endforeach
+                    
+														</ul>
 												</div>
 												
 											</div>
 										</ul>
 									</li>
-									<li><a href="#">Register</a></li>
-									<li><a href="#">Login</a></li>
+									<li><a href="{{ route('registercreate') }}">Register</a></li>
+									<li><a href="{{ route('userlogin')}}">Login</a></li>
 									<li><a href="#">Contact</a></li>
 								</ul>
 							</div>

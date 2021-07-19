@@ -132,8 +132,64 @@ Route::post('getcity',[App\Http\Controllers\ApprovalRetailerController::class,'g
 ##################################################################
 
 Route::get('admin/approveproduct/ApprovalProductshow', [App\Http\Controllers\ApprovalProductController::class,'index'])->name('ApprovalProductshow');
+Route::get('admin/approveproduct/AllApprovalProductshow', [App\Http\Controllers\ApprovalProductController::class,'create'])->name('AllApprovalProductshow');
+
+Route::get('retailer/product/productverify/edit/{id}',[App\Http\Controllers\ApprovalProductController::class,'edit'])->name('productverifyedit');
 
 
+
+
+
+
+##################################################################
+###############                           ########################
+############### Retail Login Page Route      ########################
+###############                           ########################
+##################################################################
+
+
+Route::get('retailer/retailerlogin',[App\Http\Controllers\RetailerController::class,'create'])->name('retailerlogin');
+Route::get('/rhome', [App\Http\Controllers\RetailerHomeController::class,'index'])->name('rhome');
+
+
+
+
+##################################################################
+###############                           ########################
+############### Retailer Product Add  Route      #################
+###############                           ########################
+##################################################################
+
+Route::get('retailer/products', [App\Http\Controllers\ProductController::class,'create'])->name('productcreate');
+Route::post('retailer/products', [App\Http\Controllers\ProductController::class,'store'])->name('productstore');
+Route::get('retailer/products/AllProductshow', [App\Http\Controllers\ProductController::class,'index'])->name('AllProductshow');
+
+
+Route::post('getsalecity',[App\Http\Controllers\ProductController::class,'getSaleCity'])->name('getSaleCity');
+Route::post('getcategory',[App\Http\Controllers\ProductController::class,'getCategory'])->name('getCategory');
+
+
+Route::delete('retailer/products/destroy/{id}',[App\Http\Controllers\ProductController::class,'destroy'])->name('retailerproductdestroy');
+
+Route::get('retailer/products/edit/{id}',[App\Http\Controllers\ProductController::class,'edit'])->name('retailerproductedit');
+
+Route::patch('retailer/products/update/{id}',[App\Http\Controllers\ProductController::class,'update'])->name('retailerproductupdate');
+
+
+
+##################################################################
+###############                           ########################
+############### Retailer Change apssword Route ###################
+###############                           ########################
+##################################################################
+
+
+Route::get('retailer/changepassword', [App\Http\Controllers\ChangePasswordController::class,'index'])->name('retailerchangepass');
+Route::post('retailer/changepassword', [App\Http\Controllers\ChangePasswordController::class,'store'])->name('retailerchangestore');
+
+
+Route::get('retailer/profile', [App\Http\Controllers\RetailerProfileController::class,'index'])->name('changeprofile');
+Route::post('retailer/profile', [App\Http\Controllers\RetailerProfileController::class,'store'])->name('changeprofilestore');
 
 
 ##################################################################
@@ -143,3 +199,36 @@ Route::get('admin/approveproduct/ApprovalProductshow', [App\Http\Controllers\App
 ##################################################################
 
 Route::get('/', [App\Http\Controllers\UserHomeController::class, 'index'])->name('userhome');
+
+
+##################################################################
+###############                           ########################
+############### User Show Product Page Route      ################
+###############                           ########################
+##################################################################
+
+
+Route::get('user/showproducts/{id}', [App\Http\Controllers\ShowProductController::class,'show'])->name('showproducts');
+Route::get('user/showproducts/detail/{id}',[App\Http\Controllers\ShowProductController::class,'edit'])->name('showdetails');
+
+
+##################################################################
+###############                           ########################
+############### User Register Page Route  ########################
+###############                           ########################
+##################################################################
+
+Route::get('user/userregister', [App\Http\Controllers\UserRegisterController::class,'create'])->name('registercreate');
+Route::post('user/userregister', [App\Http\Controllers\UserRegisterController::class,'store'])->name('registerstore');
+
+
+
+##################################################################
+###############                           ########################
+############### user Login Page Route      ########################
+###############                           ########################
+##################################################################
+
+
+Route::get('user/userlogin',[App\Http\Controllers\UserRegisterController::class,'index'])->name('userlogin');
+Route::get('/userhome', [App\Http\Controllers\UserRegisterController::class,'index'])->name('rhome');

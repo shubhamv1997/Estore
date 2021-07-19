@@ -137,29 +137,24 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </a>
                                 <ul class="treeview-menu">
                                     <li><a href="{{ route('retailercreate') }}"><i class="fa fa-angle-right"></i> Add Retailer</a></li>
-                                    <li><a href="{{ route('retailershow') }}"><i class="fa fa-angle-right"></i> Approval Retailer</a></li>
+                                    <li><a href="{{ route('retailershow') }}"><i class="fa fa-angle-right"></i> Manage Retailer</a></li>
 
                                 </ul>
                             </li>
 
                             <li class="treeview">
-                                <a href="{{ route('retailershow') }}">
-                                <i class="fa fa-table"></i>
-                                <span>Approve Retailer</span>
+                                <a href="#">
+                                    <i class="fa fa-edit"></i> <span>Products</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
                                 </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="{{ route('ApprovalProductshow') }}"><i class="fa fa-angle-right"></i> Unapproval Products</a></li>
+                                    <li><a href="{{ route('AllApprovalProductshow') }}"><i class="fa fa-angle-right"></i> Approval Retailer</a></li>
+
+                                </ul>
                             </li>
-                            <li class="treeview">
-                                <a href="{{ route('ApprovalProductshow') }}">
-                                <i class="fa fa-table"></i>
-                                <span>Approve Products</span>
-                                </a>
-                            </li>
-                            <li class="treeview">
-                                <a href="">
-                                <i class="fa fa-table"></i>
-                                <span>Promote Retailer</span>
-                                </a>
-                            </li>
+
+
                             <li class="treeview">
                                 <a href="">
                                 <i class="fa fa-table"></i>
@@ -177,12 +172,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <a href="">
                                 <i class="fa fa-table"></i>
                                 <span>Show Feedback</span>
-                                </a>
-                            </li>
-                            <li class="treeview">
-                                <a href="">
-                                <i class="fa fa-table"></i>
-                                <span>Change Retailer Status</span>
                                 </a>
                             </li>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Subcategory;
 
 class UserHomeController extends Controller
 {
@@ -13,7 +14,18 @@ class UserHomeController extends Controller
      */
     public function index()
     {
-        return view('userhome');
+        $menstype="Mens";
+        $womenstype="Womens";
+        $kidsstype="Kids";
+        $submen = Subcategory::where('type', $menstype)
+        ->get();
+        $subwomen = Subcategory::where('type', $womenstype)
+        ->get();
+        $subkids = Subcategory::where('type', $kidsstype)
+        ->get();
+
+        return view('userhome',compact('submen','subwomen','subkids'));
+       // return view('userhome');
     }
 
     /**

@@ -24,9 +24,16 @@
                                 <div class="form-group"> 
                                     <label for="inputEmail3" class="col-sm-2 control-label">Category Name</label>
                                      <div class="col-sm-9"> 
-                                       <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Category Name"> 
+                                       <input type="text" value="{{ old('category_name') }}"  class="form-control" id="category_name" name="category_name" placeholder="Category Name"> 
+                                       @foreach($errors->get('category_name') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                                        @endforeach
+                                                    
                                      </div> 
+                                     
                                 </div>
+
+                                
                             
                              <div class="form-group"> 
                                 <label for="inputPassword3" class="col-sm-2 control-label">Type</label> 
@@ -37,6 +44,11 @@
                                             <option>Womens</option>
                                             <option>Kids</option>
                                         </select>
+
+                                        @foreach($errors->get('type') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                                        @endforeach
+            
                                     </div>
                              </div>
                               
