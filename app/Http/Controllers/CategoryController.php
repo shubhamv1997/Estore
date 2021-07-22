@@ -55,7 +55,7 @@ class CategoryController extends Controller
 
        $this->validate($request, [
         'category_name'=>'required|max:50|unique:categories,category_name', 
-        'type'=>'required|max:50|unique:categories,type', 
+        'type'=>'required', 
     ]);
 
          $id = Auth::id();
@@ -119,7 +119,7 @@ class CategoryController extends Controller
 
 
             $categories->save();
-            return redirect('admin/category/catshow')->with('Success','category Updated Successfully');
+            return redirect('admin/category/catshow')->with('Done','category Updated Successfully');
 
     }
 
@@ -133,6 +133,6 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->back()->with('Success','Data Deleted');
+        return redirect()->back()->with('Done','Data Deleted');
     }
 }

@@ -119,6 +119,10 @@ Route::post('admin/approveretailer', [App\Http\Controllers\ApprovalRetailerContr
 
 Route::get('admin/approveretailer/retailershow', [App\Http\Controllers\ApprovalRetailerController::class,'index'])->name('retailershow');
 
+Route::delete('admin/approveretailer/destroy/{id}',[App\Http\Controllers\ApprovalRetailerController::class,'destroy'])->name('retailerdestroy');
+Route::get('admin/approveretailer/edit/{id}',[App\Http\Controllers\ApprovalRetailerController::class,'edit'])->name('retaileredit');
+Route::patch('admin/approveretailer/update/{id}',[App\Http\Controllers\ApprovalRetailerController::class,'update'])->name('retailerupdate');
+
 
 
 Route::post('getcity',[App\Http\Controllers\ApprovalRetailerController::class,'getCity'])->name('getCity');
@@ -138,6 +142,28 @@ Route::get('retailer/product/productverify/edit/{id}',[App\Http\Controllers\Appr
 
 
 
+##################################################################
+###############                           ########################
+############### Admin View Order Route    ########################
+###############                           ########################
+##################################################################
+
+Route::get('admin/vieworder/ordershow', [App\Http\Controllers\UserorderController::class,'index'])->name('ordershow');
+
+
+Route::get('admin/vieworder/orderapprovel/edit/{id}',[App\Http\Controllers\UserorderController::class,'edit'])->name('orderapp');
+
+
+
+##################################################################
+###############                           ########################
+############### Retailer Change apssword Route ###################
+###############                           ########################
+##################################################################
+
+
+Route::get('admin/adminchangepassword', [App\Http\Controllers\AdminChangePasswordController::class,'index'])->name('adminchangepass');
+Route::post('admin/adminchangepassword', [App\Http\Controllers\AdminChangePasswordController::class,'store'])->name('adminchangestore');
 
 
 
@@ -173,13 +199,17 @@ Route::delete('retailer/products/destroy/{id}',[App\Http\Controllers\ProductCont
 
 Route::get('retailer/products/edit/{id}',[App\Http\Controllers\ProductController::class,'edit'])->name('retailerproductedit');
 
-Route::patch('retailer/products/update/{id}',[App\Http\Controllers\ProductController::class,'update'])->name('retailerproductupdate');
+Route::post('retailer/products/update/{id}',[App\Http\Controllers\ProductController::class,'update'])->name('retailerproductupdate');
+Route::post('retailer/products/retailerproductatt',[App\Http\Controllers\ProductController::class,'updateatt'])->name('retailerproductatt');
+Route::post('retailer/products/retailerproductimage',[App\Http\Controllers\ProductController::class,'updateimage'])->name('retailerproductimage');
+
+Route::get('retailer/products/show/{id}',[App\Http\Controllers\ProductController::class,'show'])->name('retailerproductshow');
 
 
 
 ##################################################################
 ###############                           ########################
-############### Retailer Change apssword Route ###################
+############### Retailer Change password Route ###################
 ###############                           ########################
 ##################################################################
 
@@ -190,6 +220,23 @@ Route::post('retailer/changepassword', [App\Http\Controllers\ChangePasswordContr
 
 Route::get('retailer/profile', [App\Http\Controllers\RetailerProfileController::class,'index'])->name('changeprofile');
 Route::post('retailer/profile', [App\Http\Controllers\RetailerProfileController::class,'store'])->name('changeprofilestore');
+
+
+
+
+
+##################################################################
+###############                           ########################
+############### Retailer View Order Route    ########################
+###############                           ########################
+##################################################################
+
+Route::get('retailer/vieworder/retailerordershow', [App\Http\Controllers\RetailerViewOrder::class,'index'])->name('retailerordershow');
+
+
+Route::get('retailer/vieworder/orderapprovel/edit/{id}',[App\Http\Controllers\RetailerViewOrder::class,'edit'])->name('orderapp');
+
+
 
 
 ##################################################################

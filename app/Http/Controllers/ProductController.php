@@ -73,31 +73,30 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-       /* $request->validate([
-            'product_name'=>'required',
-            'amount'=>'required',
-            'final_amount'=>'required',
-            'description'=>'required',
-            'category_id'=>'required',
-            'subcategory_id'=>'required',
-            'retailer_id'=>'required',
-            'country_id'=>'required',
-            'city_id'=>'required',
-            'tax'=>'required',
-            'return_policy' =>'required',
-            'specification' =>'required',
-            'image_1'=>'required',
-            'image_2'=>'required',
-            'image_3'=>'required',
-            'att_name1'=>'required',
-            'att_value1'=>'required',
-            'att_name2'=>'required',
-            'att_value2'=>'required',
-            'status'=>'required'
 
-
+        $this->validate($request, [
+            'product_name'=>'required|max:50|unique:products,product_name', 
+            'amount'=>'required', 
+            'final_amount'=>'required', 
+            'description'=>'required|max:500|unique:products,description', 
+            'category_id'=>'required', 
+            'subcategory_id'=>'required', 
+            'retailer_id'=>'required', 
+            'country_id'=>'required', 
+            'city_id'=>'required', 
+            'tax'=>'required', 
+            'return_policy'=>'required', 
+            'specification'=>'required|max:500', 
+            'image_1'=>'required|image|max:2048|unique:product_images,image_1', 
+            'image_2'=>'required|image|max:2048|unique:product_images,image_2', 
+            'image_3'=>'required|image|max:2048|unique:product_images,image_3', 
+            'att_name1'=>'required', 
+            'att_value1'=>'required', 
+            'att_name2'=>'required', 
+            'att_value2'=>'required', 
         ]);
-    */
+
+        
         $id = Auth::id();
         $image_1 = $request->file('image_1');
         $image_2 = $request->file('image_2');
@@ -197,7 +196,21 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        echo $id;
+        $products=DB::table('products')
+        ->select('products.*','countries.country_name','cities.city_name','categories.category_name','subcategories.subcategory_name','users.name','product_images.image_1','product_images.image_2','product_images.image_3','product_attributes.att_name1','product_attributes.att_value1','product_attributes.att_name2','product_attributes.att_value2')
+        ->join('countries','countries.id','=','products.country_id')
+        ->join('cities','cities.id','=','products.city_id')
+        ->join('categories','categories.id','=','products.category_id')
+        ->join('subcategories','subcategories.id','=','products.subcategory_id')
+        ->join('users','users.id','=','products.retailer_id')
+        ->join('product_images','product_images.product_id','=','products.id')
+        ->join('product_attributes','product_attributes.product_id','=','products.id')
+        ->where('products.id', $id)
+         ->get();
+        //  echo $products;
+        return view('retailer/products.show',compact('products'));
+    
     }
 
     /**
@@ -217,15 +230,21 @@ class ProductController extends Controller
         ->select('users.*')->where('id',$idd)
         ->get();
  
-        $product_attributes=DB::table('product_attributes')
-        ->select('product_attributes.*')->where('product_id',$id)
-        ->get();
- 
+       
 
 
         $products = Product::find($id);
-        
-        return view('retailer/products.edit',compact('products','product_attributes','countries','categories','users'));
+        //$product_attributes = ProductAttribute::find($id);
+        $product_attributes = DB::table('product_attributes')
+                ->where('product_id', '=', $id)
+                ->get();
+
+        $product_images = DB::table('product_images')
+                ->where('product_id', '=', $id)
+                ->get();
+       // print_r($product_attributes);
+        //die;
+        return view('retailer/products.edit',compact('products','product_images','product_attributes','countries','categories','users'));
     }
 
     /**
@@ -237,7 +256,44 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'product_name'=>'required',
+            'amount'=>'required',
+            'final_amount'=>'required',
+            'description'=>'required',
+            'category_id'=>'required',
+            'subcategory_id'=>'required',
+            'retailer_id'=>'required',
+            'country_id'=>'required',
+            'city_id'=>'required',
+            'tax'=>'required',
+            'return_policy'=>'required',
+            'specification'=>'required'
+            ]);
+            //$id = Auth::id();
+
+        $products = Product::find($id);
+        $products->product_name=$request->get('product_name');
+        $products->amount=$request->get('amount');
+        $products->final_amount=$request->get('final_amount');
+        $products->description=$request->get('description');
+        $products->category_id=$request->get('category_id');
+        $products->subcategory_id=$request->get('subcategory_id');
+        $products->retailer_id=$request->get('retailer_id');
+        $products->country_id=$request->get('country_id');
+        $products->city_id=$request->get('city_id');
+        $products->tax=$request->get('tax');
+        $products->return_policy=$request->get('return_policy');
+        $products->specification=$request->get('specification');
+
+
+        $products->save();
+
+        
+
+
+        return redirect()->back()->with('Done','Product Updated Successfully');
+    
     }
 
     /**
@@ -249,9 +305,12 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-        $pi=DB::table('product_images')
-        ->select('product_images.*')->where('product_id',$id)
+        
+
+        $pi = DB::table('product_images')
+        ->where('product_id', '=', $id)
         ->get();
+
         $image_path1 = public_path('productpics').'/'.$pi->image_1;
         $image_path2 = public_path('productpics').'/'.$pi->image_2;
         $image_path3 = public_path('productpics').'/'.$pi->image_3;
@@ -283,6 +342,67 @@ class ProductController extends Controller
             $subcat=Subcategory::where('category_id',$category_id)->get();
          
             return response()->json($subcat);
+           
+    }
+
+    
+    
+    public function updateatt(Request $request)
+    {
+
+             $product_id= $request->post('product_id');
+             $attDetails=[
+                 'att_name1'=>$request->post('att_name1'),
+                 'att_value1'=>$request->post('att_value1'),
+                 'att_name2'=>$request->post('att_name2'),
+                 'att_value2'=>$request->post('att_value2')
+
+
+             ];
+            $product_att = ProductAttribute::where('product_id', $product_id)
+            ->update($attDetails);
+
+
+        return redirect()->back()->with('Done','Products Updated Successfully');
+    
+           
+    }
+
+
+    public function updateimage(Request $request)
+    {
+
+             $product_id= $request->post('product_id');
+
+             $hidden_name1 = $request->hidden_image1;
+             $hidden_name2 = $request->hidden_image2;
+             $hidden_name3 = $request->hidden_image3;
+                
+        $image_1 = $request->file('image_1');
+        $image_2 = $request->file('image_2');
+        $image_3 = $request->file('image_3');
+        $new_name1 = rand(). "." . $image_1->getClientOriginalExtension();
+        $image_1->move(public_path('productpics'), $new_name1);
+        
+        $new_name2 = rand(). "." . $image_2->getClientOriginalExtension();
+        $image_2->move(public_path('productpics'), $new_name2);
+
+        $new_name3 = rand(). "." . $image_3->getClientOriginalExtension();
+        $image_3->move(public_path('productpics'), $new_name3);
+
+
+             $imgDetails=[
+                 'image_1'=>$new_name1,
+                 'image_2'=>$new_name2,
+                 'image_3'=>$new_name3
+
+             ];
+            $product_att = ProductImage::where('product_id', $product_id)
+            ->update($imgDetails);
+
+
+        return redirect()->back()->with('Done','Products Images Updated Successfully');
+    
            
     }
 

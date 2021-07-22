@@ -68,7 +68,7 @@
                                 <td>{{ $r->monthly_charges}}</td>
                                 <td>{{ $r->after_discount}}</td>
  
-                                <td><i class="fa fa-edit"></i></td>
+                                <td><a href="{{ route('retaileredit',$r->id)}}"><i class="fa fa-edit"></i></a></td>
                                 <td><i class="fa fa-trash"></i></td>
                               
                                 </tr>

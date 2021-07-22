@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title> Marvel Sign In Form a Flat Responsive Widget Template :: w3layouts </title>
+    <title>Retailer Login </title>
     <!-- Meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,7 +24,7 @@
   <body>
     <div class="back-image bg bg1">
       <h1 class="header-w3ls ">
-        Vendor Sign In Form
+        Retailer Sign In Form
       </h1>
        @if(session()->get('error'))
                        <div class="alert alert-primary alert-dismissible">

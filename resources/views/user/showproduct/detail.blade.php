@@ -57,8 +57,9 @@
 						<div class="snipcart-thumb agileinfo_single_right_snipcart">
 							<h4 class="m-sing">Price: ${{$p->amount}}</h4>
 						</div>
-						<div class="snipcart-details agileinfo_single_right_details">
-							
+						<div class="w3agile_description">
+						<h4>Specification :</h4>
+						<p>{{ $p->specification}}</p>
 						</div>
 					</div>
                     @endforeach

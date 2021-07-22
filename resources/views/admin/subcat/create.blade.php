@@ -30,6 +30,10 @@
                                             <option>Womens</option>
                                             <option>Kids</option>
                                         </select>
+                                        
+                                    @foreach($errors->get('type') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                                    @endforeach
                                     </div>
                              </div>
                             
@@ -42,6 +46,10 @@
                                                 <option value="{{ $c->id }}">{{ $c->category_name }}</option>
                                             @endforeach
                                         </select>
+                                        
+                                    @foreach($errors->get('category_id') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                                     @endforeach
                                     </div>
                              </div>
 
@@ -49,7 +57,11 @@
                                     <label for="inputEmail3" class="col-sm-2 control-label">Subcategory Name</label>
                                      <div class="col-sm-9"> 
                                        <input type="text" class="form-control" id="subcategory_name" name="subcategory_name" placeholder="Subcategory Name"> 
-                                     </div> 
+                                    
+                                       @foreach($errors->get('subcategory_name') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                                        @endforeach
+                                    </div> 
                                 </div>
                               
                              <div class="form-group"> 

@@ -32,6 +32,11 @@
                                                 <option value="{{ $c->id }}">{{ $c->country_name }}</option>
                                             @endforeach
                                         </select>
+
+                                        @foreach($errors->get('country_id') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                                        @endforeach
+                                      
                                     </div>
                              </div>
 
@@ -39,7 +44,11 @@
                                     <label for="inputEmail3" class="col-sm-2 control-label">City Name</label>
                                      <div class="col-sm-9"> 
                                        <input type="text" class="form-control" id="city_name" name="city_name" placeholder="City Name"> 
-                                     </div> 
+                                    
+                                       @foreach($errors->get('city_name') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                                        @endforeach 
+                                    </div> 
                                 </div>
                               
                              <div class="form-group"> 

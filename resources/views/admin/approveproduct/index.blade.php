@@ -65,15 +65,16 @@
                                 <td><a href="{{route('productverifyedit',$p->id)}}"><button class="btn btn-warning">Approval</a></button></td>
                               
                                 </tr>
-                                @endforeach                 
-                        </tbody> 
-                    </table>
-                    @else
+                                @endforeach         
+                                @else
                          <tr>
                                 <td colspan="5">No Data Found</td>
                          </tr>
                     @endif
-					</div>
+					        
+                        </tbody> 
+                    </table>
+                    </div>
 				</div>
 			</div>
 		</div>

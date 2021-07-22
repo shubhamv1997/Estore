@@ -23,7 +23,7 @@
                                 @csrf
                                 @method('PATCH')
                                 <div class="form-group"> 
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Brand Name</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Country Name</label>
                                      <div class="col-sm-9"> 
                                        <input type="text" class="form-control" id="country_name" value="{{ $countries->country_name }}" name="country_name" placeholder="Country Name"> 
                                      </div> 

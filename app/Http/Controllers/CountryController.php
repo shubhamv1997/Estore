@@ -41,10 +41,11 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'country_name'=>'required'
 
-
+        
+        $this->validate($request, [
+            'country_name'=>'required|max:50|unique:countries,country_name', 
+            
         ]);
          $id = Auth::id();
         
@@ -101,7 +102,7 @@ class CountryController extends Controller
         $countries = Country::find($id);
         $countries->country_name=$request->get('country_name');
         $countries->save();
-        return redirect('admin/country/countryshow')->with('Success','country Updated Successfully');
+        return redirect('admin/country/countryshow')->with('Done','country Updated Successfully');
 
     }
 
@@ -115,6 +116,6 @@ class CountryController extends Controller
     {
         $countries = Country::findOrFail($id);
         $countries->delete();
-        return redirect()->back()->with('Success','Data Deleted');
+        return redirect()->back()->with('Done','Data Deleted');
     }
 }

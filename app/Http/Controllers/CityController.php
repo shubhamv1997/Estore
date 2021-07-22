@@ -47,11 +47,12 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'country_id'=>'required',
-            'city_name'=>'required'
 
 
+        $this->validate($request, [
+            'country_id'=>'required', 
+            'city_name'=>'required|max:50|unique:cities,city_name', 
+            
         ]);
          $id = Auth::id();
         
@@ -115,7 +116,7 @@ class CityController extends Controller
 
 
         $cities->save();
-        return redirect('admin/city/cityshow')->with('Success','City Updated Successfully');
+        return redirect('admin/city/cityshow')->with('Done','City Updated Successfully');
     }
 
     /**
@@ -128,6 +129,6 @@ class CityController extends Controller
     {
         $cities = City::findOrFail($id);
         $cities->delete();
-        return redirect()->back()->with('Success','Data Deleted');
+        return redirect()->back()->with('Done','Data Deleted');
     }
 }

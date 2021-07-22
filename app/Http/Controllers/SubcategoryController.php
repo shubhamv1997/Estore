@@ -55,6 +55,13 @@ class SubcategoryController extends Controller
 
 
         ]);
+
+        $this->validate($request, [
+            'type'=>'required', 
+            'category_id'=>'required', 
+            'subcategory_name'=>'required|max:100|unique:subcategories,subcategory_name', 
+        ]);
+
          $id = Auth::id();
         
         $form_data = array(
@@ -121,7 +128,7 @@ class SubcategoryController extends Controller
 
 
         $subcategories->save();
-        return redirect('admin/subcat/subshow')->with('Success','Subcategory Updated Successfully');
+        return redirect('admin/subcat/subshow')->with('Done','Subcategory Updated Successfully');
 
     }
 
@@ -135,7 +142,7 @@ class SubcategoryController extends Controller
     {
         $subcategory = Subcategory::findOrFail($id);
         $subcategory->delete();
-        return redirect()->back()->with('Success','Data Deleted');
+        return redirect()->back()->with('Done','Data Deleted');
     }
 
     public function getType(Request $request)

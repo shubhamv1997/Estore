@@ -21,7 +21,7 @@
                              <thead> 
                                 <tr> 
                                     <th>#</th> 
-                                    <th>Category Type</th> 
+                                    <th>Type</th> 
                                     <th>Category Name</th>
                                     <th>Subcategory Name</th>
                                     <th>Edit</th>

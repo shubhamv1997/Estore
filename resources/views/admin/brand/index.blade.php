@@ -11,7 +11,7 @@
 					
 					<div class="table-responsive bs-example widget-shadow">
 						<h4>Show Brand Data:</h4>
-                        @if(session()->get('Success'))
+                        @if(session()->get('Done'))
                             <div class="alert alert-success" role="alert">
                                 <strong><i class="icon fa fa-check"></i>Well done!</strong> {{ session()->get('Done') }}
                             </div>

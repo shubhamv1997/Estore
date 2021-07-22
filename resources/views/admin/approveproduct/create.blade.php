@@ -64,15 +64,17 @@
                                 <td>{{ $p->status}}</td>
                                
                                 </tr>
-                                @endforeach                 
-                        </tbody> 
-                    </table>
-                    @else
+                                @endforeach    
+                                
+                                @else
                          <tr>
                                 <td colspan="5">No Data Found</td>
                          </tr>
-                    @endif
-					</div>
+                                  @endif
+					
+                        </tbody> 
+                    </table>
+                   </div>
 				</div>
 			</div>
 		</div>

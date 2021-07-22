@@ -25,7 +25,13 @@
                                     <label for="inputEmail3" class="col-sm-2 control-label">Country Name</label>
                                      <div class="col-sm-9"> 
                                        <input type="text" class="form-control" id="country_name" name="country_name" placeholder="Country Name"> 
-                                     </div> 
+                                    
+                                    
+	                                   @foreach($errors->get('country_name') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                                        @endforeach
+                                      
+                                    </div> 
                                 </div>
                             
                              
