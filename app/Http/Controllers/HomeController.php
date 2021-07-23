@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Category;
+use App\Models\Retailer;
+use App\Models\Product;
+use App\Models\UserRegister;
+use App\Models\UsersOrder;
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +28,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $category=DB::table('categories')->count();
+        $product=DB::table('products')->count();
+        $retailer=DB::table('retailers')->count();
+        $register=DB::table('user_registers')->count();
+        $order=DB::table('users_orders')->count();
+        $u_order = UsersOrder::orderBy('id', 'DESC')->take(5)->get();
+        return view('home',compact('category','product','retailer','order','register','u_order'));
+       // return view('home');
     }
 }

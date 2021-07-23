@@ -56,7 +56,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <h1><a class="navbar-brand" href="index.html"> E-Commerce<span class="dashboard_text">Shopping Site</span></a></h1>
+                        <h1><a class="navbar-brand" href="{{ route('home') }}"> E-Commerce<span class="dashboard_text">Shopping Site</span></a></h1>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="sidebar-menu">
@@ -149,19 +149,20 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </a>
                                 <ul class="treeview-menu">
                                     <li><a href="{{ route('ApprovalProductshow') }}"><i class="fa fa-angle-right"></i> Unapproval Products</a></li>
-                                    <li><a href="{{ route('AllApprovalProductshow') }}"><i class="fa fa-angle-right"></i> Approval Retailer</a></li>
+                                    <li><a href="{{ route('AllApprovalProductshow') }}"><i class="fa fa-angle-right"></i> Approval Products</a></li>
 
                                 </ul>
                             </li>
 
+                            
 
                             <li class="treeview">
-                                <a href="">
+                                <a href="{{ route('ordershow') }}">
                                 <i class="fa fa-table"></i>
                                 <span>All Order</span>
                                 </a>
                             </li>
-                            <li class="treeview">
+                           <!-- <li class="treeview">
                                 <a href="">
                                 <i class="fa fa-table"></i>
                                 <span>Show Dispute</span>
@@ -173,7 +174,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 <i class="fa fa-table"></i>
                                 <span>Show Feedback</span>
                                 </a>
-                            </li>
+                            </li>-->
 
 
                         </ul>
@@ -213,8 +214,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             </a>
                             <ul class="dropdown-menu drp-mnu">
 
-                                <li> <a href="#"><i class="fa fa-user"></i> My Account</a> </li>
-                                <li> <a href="#"><i class="fa fa-suitcase"></i> Change Password</a> </li>
+                                <li> <a href="{{ route('adminchangepass') }}"><i class="fa fa-suitcase"></i> Change Password</a> </li>
                                 <li>
                                 <a href="#" onclick="document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -30,7 +30,10 @@
                   <div class="form-group col-md-4">
                     <label for="product_name">Product Name </label>
                        <input type="text" name='product_name' class="form-control" id="product_name" placeholder="Product Name"/>
-                       
+                       @foreach($errors->get('product_name') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                       
                     
                   </div>
@@ -38,12 +41,18 @@
                   <label for="amount">Amount </label>
                    
                        <input name="amount" class="form-control" id="amount" onblur="return amt()" placeholder="Amount"/>
-                      
+                       @foreach($errors->get('amount') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                   </div>
                   <div class="form-group col-md-4">
                     <label for="final_amount">Final Amount </label>
                        <input type="text" name="final_amount" readonly="" class="form-control" id="final_amount" placeholder="Final Amount"/>
-                      
+                       @foreach($errors->get('final_amount') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                   </div>
                 </div>
 
@@ -52,7 +61,10 @@
 
                   <label for="description">Description </label>
                        <input type="text" name="description" class="form-control" id="description" placeholder="Description"/>
-                    
+                       @foreach($errors->get('description') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                        
                       
                      
@@ -62,14 +74,19 @@
                   <label for="image_1">Image 1 </label>
                       <input type="file" name='image_1' class="form-control" id="image_1"/>
                     
-                     
+                      @foreach($errors->get('image_1') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                        
                   </div>
                   <div class="form-group col-md-4">
 
                   <label for="image_2">Image 2 </label>
                      <input type="file" name="image_2" class="form-control" id="image_2"/>
-                   
+                     @foreach($errors->get('image_2') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
                        
                   </div>
                 </div>
@@ -79,7 +96,9 @@
                    <label for="image_3">Image 3</label>
                         <input type="file" name="image_3" class="form-control" id="image_3"/>
                      
-                      
+                        @foreach($errors->get('image_3') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
                   </div>
                   <div class="form-group col-md-4">
 
@@ -92,7 +111,10 @@
                         @endforeach
                     
                     </select>
-
+                    @foreach($errors->get('category_id') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                   </div>
                   <div class="form-group col-md-4">
 
@@ -103,7 +125,10 @@
                                            
                     </select>  
                   
-
+                    @foreach($errors->get('subcategory_id') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                  
                   </div>
                 </div>
@@ -119,7 +144,6 @@
                                           
                     </select>  
                  
-                      
 
                      
                   </div>
@@ -132,7 +156,10 @@
                         @endforeach
                  </select>
                   
-                    
+                 @foreach($errors->get('country_id') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                   </div>
                   <div class="form-group col-md-4">
 
@@ -141,7 +168,10 @@
                              <option selected="" disabled="">--------Select Sale City----</option>
                                             
                 </select>
-
+                @foreach($errors->get('city_id') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                      
                   </div>
                  
@@ -152,7 +182,9 @@
 
                   <label for="att_name1">Attribut Name 1</label>
                       <input type="text" class="form-control" id="att_name1" name="att_name1" placeholder="Attribute Name 1">
-                    
+                      @foreach($errors->get('att_name1') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
                     
                   </div>
                   <div class="form-group col-md-4">
@@ -160,13 +192,17 @@
                   <label for="att_value1">Attribut Value 1</label>
                       <input type="text" class="form-control" id="att_value1" name="att_value1" placeholder="Attribute Value 1">
                     
-                    
+                      @foreach($errors->get('att_value1') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
                   </div>
                   <div class="form-group col-md-4">
 
                   <label for="att_name2">Attribut Name 2</label>
                       <input type="text" class="form-control" id="att_name2" name="att_name2" placeholder="Attribute Name 2">
-                 
+                      @foreach($errors->get('att_name2') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
 
                       
                   </div>
@@ -179,7 +215,9 @@
                   <label for="att_value2">Attribut Value 2</label>
                       <input type="text" class="form-control" id="att_value2" name="att_value2" placeholder="Attribute Value 2">
                  
-                     
+                      @foreach($errors->get('att_value2') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
                   </div>
                   
 
@@ -189,6 +227,11 @@
                         <label for="specification">Specification</label>
                         <textarea class="form-control" id="specification" name="specification" placeholder="Specification"></textarea>
                       
+
+                        @foreach($errors->get('specification') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                     </div>
 
                   
@@ -200,7 +243,10 @@
                   <div class="form-group col-md-4">
                      <label for="tax">Tax</label>
                       <input type="text" class="form-control" id="tax" name="tax" placeholder="Tax">
-                    
+                      @foreach($errors->get('tax') as $error)
+                                            <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                   </div>
                   <div class="form-group col-md-4">
                   <label for="return_policy">Return Policy</label>
@@ -209,6 +255,11 @@
                         <option>Yes</option>
                         <option>No</option>
                     </select>
+
+                    @foreach($errors->get('return_policy') as $error)
+                          <span class="help-block" style="color:red;">{{ $error }}</span>
+                        @endforeach
+   
                   </div>
                   <div class="form-group col-md-4">
 
@@ -303,7 +354,7 @@
                   },
                   success: function(data)
                   {
-                      alert(data);
+                      //alert(data);
                     op+='<option value="" selected disabled>Select Subcategory</option>';
                     for(var i=0;i<data.length;i++)
                     {

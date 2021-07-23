@@ -13,7 +13,7 @@
                             <i class="pull-left fa fa-dollar icon-rounded"></i>
                             <div class="stats">
                                 <h5><strong>No.of Category</strong></h5>
-                                <span>Total Category</span>
+                                <span>{{ $category }}</span>
 
                                 
                             </div>
@@ -24,7 +24,8 @@
                             <i class="pull-left fa fa-laptop user1 icon-rounded"></i>
                             <div class="stats">
                                 <h5><strong>No. of Retailer</strong></h5>
-                                <span>Total Retailer</span>
+                                <span><span>{{ $retailer }}</span>
+</span>
                             </div>
                         </div>
                     </div>
@@ -33,7 +34,8 @@
                             <i class="pull-left fa fa-money user2 icon-rounded"></i>
                             <div class="stats">
                                 <h5><strong>No. of Products</strong></h5>
-                                <span>Total Products</span>
+                                <span><span>{{ $product }}</span>
+</span>
                             </div>
                         </div>
                     </div>
@@ -42,7 +44,8 @@
                             <i class="pull-left fa fa-pie-chart dollar1 icon-rounded"></i>
                             <div class="stats">
                                 <h5><strong>No. Of Users</strong></h5>
-                                <span>Total Users</span>
+                                <span><span>{{ $register }}</span>
+</span>
                             </div>
                         </div>
                     </div>
@@ -51,10 +54,13 @@
                             <i class="pull-left fa fa-users dollar2 icon-rounded"></i>
                             <div class="stats">
                                 <h5><strong>No. of Orders</strong></h5>
-                                <span>Total Orders</span>
+                                <span><span>{{ $order }}</span>
+</span>
                             </div>
                         </div>
                     </div>
+
+                    
                     <div class="clearfix"> </div>
                 </div>
 
@@ -76,41 +82,31 @@
                             <tr>
                                  <th>#</th> 
                                  <th>Cutomer Name</th>
-                                  <th>Date of Order</th> 
+                                 <th>Retailer</th> 
                                   <th>Product Name</th> 
+                                  <th>Quantity</th> 
+                                  
+                                  <th>Date of Order</th>
                                   <th>Price</th>
                                    <th>Status</th> 
-                                   <th>Quantity</th>
                              </tr> 
                              </thead> 
                              <tbody> 
+                             @foreach($u_order as $uo)
+
                              <tr>
-                                 <th scope="row">1</th> 
-                                 <td>Table cell</td>
-                                  <td>Table cell</td>
-                                 <td>Table cell</td>
-                                 <td>Table cell</td>
-                                 <td>Table cell</td> 
-                                <td>Table cell</td> 
+                                 <th scope="row">{{ $loop->iteration }}</th> 
+                                 <td>{{ $uo->order_id}}</td>
+                                 <td>{{ $uo->retailer_id}}</td>
+                                 <td>{{ $uo->product_id}}</td>
+                                 <td>{{ $uo->Quantity}}</td>
+                                 <td>{{ $uo->order_date}}</td>
+                                 <td>{{ $uo->amount}}</td>
+                                 <td>{{ $uo->status}}</td>
+                                 
+                            @endforeach
                             </tr> 
-                            <tr>
-                                 <th scope="row">2</th>
-                                 <td>Table cell</td> 
-                                 <td>Table cell</td> 
-                                 <td>Table cell</td> 
-                                 <td>Table cell</td> 
-                                 <td>Table cell</td> 
-                                 <td>Table cell</td> 
-                            </tr> 
-                            <tr>
-                                 <th scope="row">3</th>
-                                <td>Table cell</td>
-                                 <td>Table cell</td> 
-                                 <td>Table cell</td> 
-                                 <td>Table cell</td> 
-                                 <td>Table cell</td> 
-                                 <td>Table cell</td> 
-                            </tr> 
+                             
                         </tbody> 
                     </table>
 

@@ -14,6 +14,7 @@ class Retailer extends Model
         'last_name',
         'email',
         'password',
+        'profile_pic',
         'business_name',
         'business_address',
         'mobile_number',

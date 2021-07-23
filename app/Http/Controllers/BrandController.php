@@ -43,11 +43,13 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'brand_name'=>'required'
+        
 
-
+        $this->validate($request, [
+            'brand_name'=>'required|max:50|unique:brands,brand_name', 
+            
         ]);
+        
          $id = Auth::id();
         
         $form_data = array(
@@ -103,7 +105,7 @@ class BrandController extends Controller
         $brands = Brand::find($id);
         $brands->brand_name=$request->get('brand_name');
         $brands->save();
-        return redirect('admin/brand/brandshow')->with('Success','Brand Updated Successfully');
+        return redirect('admin/brand/brandshow')->with('Done','Brand Updated Successfully');
 
     }
 
@@ -117,6 +119,6 @@ class BrandController extends Controller
     {
         $brands = Brand::findOrFail($id);
         $brands->delete();
-        return redirect()->back()->with('Success','Data Deleted');
+        return redirect()->back()->with('Done','Data Deleted');
     }
 }

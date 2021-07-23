@@ -59,15 +59,16 @@ class ApprovalRetailerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'email'=>'required',
-            'password'=>'required',
-            'business_name'=>'required',
-            'business_address'=>'required',
-            'mobile_number'=>'required',
-            'business_phone'=>'required',
+        $this->validate($request, [
+            'first_name'=>'required|max:50|unique:retailers,first_name', 
+            'last_name'=>'required|max:50|unique:retailers,last_name', 
+            'email'=>'required|max:50|unique:retailers,email', 
+            'password'=>'required', 
+            'profile_pic'=>'required|max:2048', 
+            'business_name'=>'required|max:100|unique:retailers,business_name', 
+            'business_address'=>'required|max:200|unique:retailers,business_address', 
+            'mobile_number'=>'required|max:100|unique:retailers,mobile_number', 
+            'business_phone'=>'required|max:50|unique:retailers,business_phone', 
             'document_name'=>'required',
             'front_pic' =>'required|image|max:2048',
             'back_pic' =>'required|image|max:2048',
@@ -78,20 +79,25 @@ class ApprovalRetailerController extends Controller
             'discount_amount'=>'required',
             'monthly_charges'=>'required',
             'bank_name'=>'required',
-            'account_number'=>'required',
-            'ifsc'=>'required'
-
+            'account_number'=>'required|max:100|unique:banks,account_number',
+            'ifsc'=>'required',
 
         ]);
+        
     
         $id = Auth::id();
         $front_pic = $request->file('front_pic');
         $back_pic = $request->file('back_pic');
+        $profile_pic = $request->file('profile_pic');
         $new_name1 = rand(). "." . $front_pic->getClientOriginalExtension();
         $front_pic->move(public_path('retailerpics'), $new_name1);
         
         $new_name2 = rand(). "." . $back_pic->getClientOriginalExtension();
         $back_pic->move(public_path('retailerpics'), $new_name2);
+
+
+        $profile_pic2 = rand(). "." . $profile_pic->getClientOriginalExtension();
+        $profile_pic->move(public_path('retailerpics'), $profile_pic2);
 
       //  $data->id = $retailer->id;
         //$photos = $request->file('photo');
@@ -108,6 +114,7 @@ class ApprovalRetailerController extends Controller
            $retailer->last_name = $request->last_name;
            $retailer->email = $request->email;
            $retailer->password = $request->password;
+           $retailer->profile_pic = $profile_pic2;
            $retailer->business_name = $request->business_name;
            $retailer->business_address = $request->business_address;
            $retailer->mobile_number =$request->mobile_number;
@@ -207,7 +214,10 @@ class ApprovalRetailerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $countries=Country::all();
+        $retailers = Retailer::find($id);
+        return view('admin/approveretailer.edit',compact('retailers','countries'));
+
     }
 
     /**

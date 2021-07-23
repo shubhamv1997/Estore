@@ -18,11 +18,23 @@
                             </div>
                             @endif
 
+                            <!----row start---->
                             <div class="row">
             <div class="col-md-1"> </div>
             <div class="col-md-10">
-              
-              
+
+
+            <ul class="nav nav-tabs">
+                  <li><a href="#a" data-toggle="tab">Product Information</a></li>
+                  <li><a href="#b" data-toggle="tab">Product Images Imformation</a></li>
+                  <li><a href="#c" data-toggle="tab">Product Attributes Information </a></li>
+                  
+            </ul>
+
+            <div class="tab-content">
+
+            <!-----first tab code--->
+              <div class="tab-pane active" id="a">
               <form role="form" action="{{ route ('retailerproductupdate',$products->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
 
@@ -59,40 +71,15 @@
                   </div>
                   <div class="form-group col-md-4">
 
-                  <label for="image_1">Image 1 </label>
-                      <input type="file" name='image_1' class="form-control" id="image_1"/>
-                      <!--<img src="" class="img-responsive" style="width:100px;height:100px"/>
--->
-                       
-                  </div>
-                  <div class="form-group col-md-4">
-
-                  <label for="image_2">Image 2 </label>
-                     <input type="file" name="image_2" class="form-control" id="image_2"/>
-                   
-                       
-                  </div>
-                </div>
-
-                <div class="form-row">
-                   <div class="form-group col-md-4">
-                   <label for="image_3">Image 3</label>
-                        <input type="file" name="image_3" class="form-control" id="image_3"/>
-                     
-                      
-                  </div>
-                  <div class="form-group col-md-4">
-
                   <label for="category_id">Category Name</label>
                       
                       <select class="form-control" id="category_id" name="category_id" >                                      
                        <option selected="" disabled="">--------Select Category----</option>
                        @foreach($categories as $cat)
-                             <option value="{{ $products->category_id == $cat->id  ? 'selected' : ''}}">{{ $cat->category_name }}</option>
+                             <option value="{{ $products->category_id}}">{{ $cat->category_name }}</option>
                         @endforeach
                     
-                    </select>
-
+                    </select>      
                   </div>
                   <div class="form-group col-md-4">
 
@@ -102,25 +89,19 @@
                        <option selected="" disabled="">--------Select Subcategory----</option>
                                            
                     </select>  
-                  
-
-                 
+                       
                   </div>
                 </div>
 
                 <div class="form-row">
-                  <div class="form-group col-md-4">
-
-                  <label for="retailer_id">Reatiler Email</label>
+                   <div class="form-group col-md-4">
+                   <label for="retailer_id">Reatiler Email</label>
                   <select class="form-control" id="retailer_id" name="retailer_id" >                                      
                   @foreach($users as $u)
                              <option value="{{ $u->id }}">{{ $u->email }}</option>
                         @endforeach
                                           
                     </select>  
-                 
-                      
-
                      
                   </div>
                   <div class="form-group col-md-4">
@@ -128,11 +109,10 @@
                   <label for="country_id">Sale Country</label>
                     <select class="form-control" id="country_id" name="country_id" >                                       <option selected="" disabled="">--------Select Country----</option>
                          @foreach($countries as $c)
-                             <option value=" {{ $products->country_id == $c->id  ? 'selected' : ''}}">{{ $c->country_name }}</option>
+                             <option value=" {{ $products->country_id}}">{{ $c->country_name }}</option>
                         @endforeach
                  </select>
-                  
-                    
+                 
                   </div>
                   <div class="form-group col-md-4">
 
@@ -142,30 +122,140 @@
                                             
                 </select>
 
-                     
+
+                 
+                  </div>
+                </div>
+
+                
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+
+                  <label for="tax">Tax</label>
+                      <input type="text" class="form-control" value="{{ $products->tax}}"id="tax" name="tax" placeholder="Tax">
+                        
+                    
+                  </div>
+                  <div class="form-group col-md-4">
+
+                  <label for="return_policy">Return Policy</label>
+                      <select  class="form-control" id="return_policy" name="return_policy" >
+                        
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                  
+                    
+                  </div>
+                  <div class="form-group col-md-4">
+
+                  <label for="specification">Specification</label>
+                        <textarea class="form-control" id="specification"  name="specification" placeholder="Specification">{{ $products->specification}}</textarea>
+                      
+
+                      
                   </div>
                  
                 </div>
 
                 <div class="form-row">
+                  <div class="form-group col-md-12">
+                      
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+                     
+                  </div>
+                  
+
+                 
+                  
+                 
+                </div>
+
+                
+
+
+              </div>
+
+
+            <!---end first tab--->
+
+            <!---start tab2--->
+              <div class="tab-pane" id="b">
+
+              <form role="form" action="{{ route ('retailerproductimage') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                @foreach ($product_images as $pi)
+               
+                  <div class="form-row">
+                  <div class="form-group col-md-4">
+                  <label for="image_1">Image 1 </label>
+                      <input type="file" name='image_1'  class="form-control" id="image_1"/>
+                      <img src="{{ URL::to('/')}}/productpics/{{ $pi->image_1}}" class="img-responsive" style="width:100px;height:100px"/>
+
+                      
+               <input type="hidden" name="hidden_image1" value="{{ $pi->image_1}}" />
+               <input type="hidden" name="product_id" value="{{ $pi->product_id}}" />
+                    
+                  </div>
+                  <div class="form-group col-md-4">
+                  <label for="image_2">Image 2 </label>
+                     <input type="file" name="image_2" class="form-control" id="image_2"/>
+                     <img src="{{ URL::to('/')}}/productpics/{{ $pi->image_2}}" class="img-responsive" style="width:100px;height:100px"/>
+                     <input type="hidden" name="hidden_image2" value="{{ $pi->image_2}}" />
+               
+                  </div>
+                  <div class="form-group col-md-4">
+                  <label for="image_3">Image 3</label>
+                        <input type="file" name="image_3" class="form-control" id="image_3"/>
+                        <img src="{{ URL::to('/')}}/productpics/{{ $pi->image_3}}" class="img-responsive" style="width:100px;height:100px"/>
+                        <input type="hidden" name="hidden_image3" value="{{ $pi->image_3}}" />
+               
+                </div>
+                </div>               
+                
+
+  <button type="submit" class="btn btn-primary">Update Product Images</button>
+            </form>
+            @endforeach
+
+
+              </div>
+
+
+
+              <!---end tab 2--->
+
+              <!---start tab 3---->
+              <div class="tab-pane" id="c">
+
+              <form role="form" action="{{ route('retailerproductatt') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                @foreach ($product_attributes as $pt)
+               
+                  
+
+                <div class="form-row">
                   <div class="form-group col-md-4">
 
                   <label for="att_name1">Attribut Name 1</label>
-                      <input type="text" class="form-control" value="" id="att_name1" name="att_name1" placeholder="Attribute Name 1">
+                      <input type="text" class="form-control"  id="att_name1" value="{{ $pt->att_name1 }}" name="att_name1" placeholder="Attribute Name 1">
+                      <input type="hidden" class="form-control"  id="product_id" value="{{ $pt->product_id }}" name="product_id" placeholder="Attribute Name 1">
                     
                     
                   </div>
                   <div class="form-group col-md-4">
 
                   <label for="att_value1">Attribut Value 1</label>
-                      <input type="text" class="form-control" id="att_value1" name="att_value1" placeholder="Attribute Value 1">
+                      <input type="text" class="form-control" id="att_value1" value="{{ $pt->att_value1 }}" name="att_value1" placeholder="Attribute Value 1">
                     
                     
                   </div>
                   <div class="form-group col-md-4">
 
                   <label for="att_name2">Attribut Name 2</label>
-                      <input type="text" class="form-control" id="att_name2" name="att_name2" placeholder="Attribute Name 2">
+                      <input type="text" class="form-control" id="att_name2" name="att_name2" value="{{ $pt->att_name2 }}" placeholder="Attribute Name 2">
                  
 
                       
@@ -177,7 +267,7 @@
                   <div class="form-group col-md-4">
 
                   <label for="att_value2">Attribut Value 2</label>
-                      <input type="text" class="form-control" id="att_value2" name="att_value2" placeholder="Attribute Value 2">
+                      <input type="text" class="form-control" id="att_value2" name="att_value2" value="{{ $pt->att_value2 }}" placeholder="Attribute Value 2">
                  
                      
                   </div>
@@ -186,43 +276,28 @@
                   <div class="form-group col-md-8">
 
                     
-                        <label for="specification">Specification</label>
-                        <textarea class="form-control" id="specification"  name="specification" placeholder="Specification">{{ $products->specification}}</textarea>
-                      
+                       
+  <button type="submit" class="btn btn-primary">Update Attributs</button>
                     </div>
 
                   
                  
                 </div>
 
-                
-                <div class="form-row">
-                  <div class="form-group col-md-4">
-                     <label for="tax">Tax</label>
-                      <input type="text" class="form-control" value=" {{ $products->tax}}"id="tax" name="tax" placeholder="Tax">
-                    
-                  </div>
-                  <div class="form-group col-md-4">
-                  <label for="return_policy">Return Policy</label>
-                      <select  class="form-control" id="return_policy" name="return_policy" >
-                        
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-4">
-
-                  <label for="status">Status</label>
-                      <select  class="form-control" id="status" name="status">
-                        <option>Pending</option>
-                     </select>
-                      
-                  </div>
-                 
-                </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
+                      @endforeach
             </form>
+
+
+              </div>
+
+
+
+              <!----end tab 3---->
+
+
+            </div>
+
+              
             </div>
             <!-- /.col -->
             <div class="col-md-1"></div>
@@ -265,7 +340,7 @@
                   },
                   success: function(data)
                   {
-                     // alert(data);
+                      alert(data);
                     op+='<option value="" selected disabled>Select Sale City</option>';
                     for(var i=0;i<data.length;i++)
                     {
@@ -288,7 +363,7 @@
 <script>
     jQuery(document).ready(function(){
             jQuery('#category_id').change(function(e){
-//alert();
+   alert();
                 var op=" ";
 
                e.preventDefault();

@@ -83,7 +83,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
                             
                             <li class="treeview">
-                                <a href="">
+                                <a href="{{ route('retailerordershow')}}">
                                 <i class="fa fa-table"></i>
                                 <span>All Order</span>
                                 </a>
@@ -95,12 +95,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </a>
                             </li>
 
-                            <li class="treeview">
-                                <a href="">
-                                <i class="fa fa-table"></i>
-                                <span>Show Feedback</span>
-                                </a>
-                            </li>
                             
 
 
