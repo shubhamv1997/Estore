@@ -27,6 +27,7 @@
                                   <th>Subcategory</th>
                                    <th>Sale City & Country</th>
                                    <th>Retailer Name</th>
+                                   <th>Status</th>
                                    <th>View</th>
                                    <th>Edit</th>
                                    <th>Delete</th>
@@ -39,13 +40,14 @@
                                 <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $p->product_name}}</td>
-                                <td>{{ $p->amount}}</td>
+                                <td>${{ $p->amount}}</td>
                                 <td>{{ $p->description}}</td>
                                 <td>{{ $p->category_name}}</td>
                                 <td>{{ $p->subcategory_name}}</td>
                                 <td>{{ $p->city_name}},{{ $p->country_name}} </td>
                                 
                                 <td>{{ $p->name}}</td>
+                                <td>{{ $p->status}}</td>
                                 <td><a href="{{ route('retailerproductshow',$p->id)}}"><i class="fa fa-eye"></i></a></td>
                                 <td><a href="{{ route('retailerproductedit',$p->id)}}"><i class="fa fa-edit"></i></a></td>
                                 <td><form action="{{ route('retailerproductdestroy',$p->id)}}" method="post">

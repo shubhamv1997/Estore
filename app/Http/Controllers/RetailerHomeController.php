@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use DB;
 use Auth;
 use App\User;
+use App\Models\Category;
+use App\Models\Subcategory;
+use App\Models\Retailer;
+use App\Models\Product;
+use App\Models\UserRegister;
+use App\Models\UsersOrder;
+use DB;
 
 class RetailerHomeController extends Controller
 {
@@ -17,7 +23,19 @@ class RetailerHomeController extends Controller
      */
     public function index()
     {
-        return view('rhome');
+        $id = Auth::id();
+        $category=DB::table('categories')->count();
+        $subcategory=DB::table('subcategories')->count();
+        $product=DB::table('products')->count();
+        $retailer=DB::table('retailers')->count();
+        $country=DB::table('countries')->count();
+        $city=DB::table('cities')->count();
+        $register=DB::table('user_registers')->count();
+        $order=DB::table('users_orders')->where('users_orders.retailer_id', $id)
+        ->count();
+        
+        return view('rhome',compact('category','country','city','subcategory','product','retailer','order','register'));
+       // return view('home');
 
     }
 

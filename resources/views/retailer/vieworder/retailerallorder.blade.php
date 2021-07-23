@@ -33,7 +33,7 @@
                              <tbody> 
                                 @php
                                 $i=0;
-                                echo count($u_orders)."UOrders";
+                                 count($u_orders);
                                 @endphp
                              @if(count($u_orders) >= 1 )
                                 @foreach ($u_orders as $u)

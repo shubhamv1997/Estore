@@ -121,12 +121,13 @@ Route::get('admin/approveretailer/retailershow', [App\Http\Controllers\ApprovalR
 
 Route::delete('admin/approveretailer/destroy/{id}',[App\Http\Controllers\ApprovalRetailerController::class,'destroy'])->name('retailerdestroy');
 Route::get('admin/approveretailer/edit/{id}',[App\Http\Controllers\ApprovalRetailerController::class,'edit'])->name('retaileredit');
-Route::patch('admin/approveretailer/update/{id}',[App\Http\Controllers\ApprovalRetailerController::class,'update'])->name('retailerupdate');
+Route::post('admin/approveretailer/update/{id}',[App\Http\Controllers\ApprovalRetailerController::class,'update'])->name('retailerupdate');
 
 
 
 Route::post('getcity',[App\Http\Controllers\ApprovalRetailerController::class,'getCity'])->name('getCity');
 
+Route::post('admin/approveretailer/retailerbank',[App\Http\Controllers\ApprovalRetailerController::class,'updatebank'])->name('retailerbank');
 
 
 ##################################################################

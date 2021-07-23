@@ -56,13 +56,13 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <h1><a class="navbar-brand"> E-Commerce<span class="dashboard_text">Shopping Site</span></a></h1>
+                        <h1><a   class="navbar-brand"> E-Commerce<span class="dashboard_text">Shopping Site</span></a></h1>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="sidebar-menu">
                             <li class="header">MAIN NAVIGATION</li>
                             <li class="treeview">
-                                <a href="{{ route('home')}}">
+                                <a >
                                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                                 </a>
                             </li>
@@ -123,7 +123,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                         <li class="dropdown profile_details_drop">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <div class="profile_img">
-                                    <span class="prfil-img"><img src="{{asset('dist/images/2.jpg')}}" alt=""> </span>
+                                    <span class="prfil-img"></span>
                                     <div class="user-name">
                                         <p>{{Auth::user()->name}}</p>
                                         <span>{{Auth::user()->email}}</span>

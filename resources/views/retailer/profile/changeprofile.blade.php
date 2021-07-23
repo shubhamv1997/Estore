@@ -83,10 +83,14 @@
                      </div>
                   <div class="form-group col-md-4">
 
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <input type="file" name="profile_pic"  class="form-control" id="business_phone" placeholder="Business Phone Number"/>
+                  <img src="{{ URL::to('/')}}/retailerpics/{{ $r->profile_pic}}" style="width:100px;height:100px"/>
+                  <input type="hidden" name="hiddenprofile_pic" value="{{ $r->profile_pic}}" class="form-control" id="business_phone" placeholder="Business Phone Number"/>
+                  
                      
                   </div>
-     
+                  <button type="submit" class="btn btn-primary">Update</button>
+                 
                  
                 </div>
             @endforeach

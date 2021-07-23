@@ -93,7 +93,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                 </ul>
                             </li>
 
-                            <li class="treeview">
+                            <!--<li class="treeview">
                                 <a href="#">
                                     <i class="fa fa-edit"></i> <span>Brand</span>
                                     <i class="fa fa-angle-left pull-right"></i>
@@ -103,7 +103,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                                     <li><a href="{{ route('brandshow') }}"><i class="fa fa-angle-right"></i> Manage Brand</a></li>
 
                                 </ul>
-                            </li>
+                            </li>-->
 
                             <li class="treeview">
                                 <a href="#">

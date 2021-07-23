@@ -33,8 +33,15 @@ class HomeController extends Controller
         $retailer=DB::table('retailers')->count();
         $register=DB::table('user_registers')->count();
         $order=DB::table('users_orders')->count();
-        $u_order = UsersOrder::orderBy('id', 'DESC')->take(5)->get();
-        return view('home',compact('category','product','retailer','order','register','u_order'));
+        //$u_order = UsersOrder::orderBy('id', 'DESC')->take(5)->get();
+        $u_orders=DB::table('users_orders')
+        ->select('users_orders.*','users.name','users.email','products.product_name')
+        ->join('users','users.id','=','users_orders.user_id')
+        ->join('products','products.id','=','users_orders.product_id')
+        ->orderBy('id', 'DESC')
+        ->take(5)->get();
+        
+        return view('home',compact('category','product','retailer','order','register','u_orders'));
        // return view('home');
     }
 }

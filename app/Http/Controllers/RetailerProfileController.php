@@ -71,7 +71,11 @@ class RetailerProfileController extends Controller
         ]);
 
         $id = Auth::id();
-     
+      echo  $profile_pic= $request->file('profile_pic');
+      
+       $new_name2 = rand(). "." . $profile_pic->getClientOriginalExtension();
+        $profile_pic->move(public_path('retailerpics'), $new_name2);
+
         $users = DB::table('users')->select('email')->where('id', $id)->get();
       
               foreach ($users as $u) {
@@ -81,6 +85,7 @@ class RetailerProfileController extends Controller
              $retailerDetailes = [
                     'first_name' => $request->get('first_name'),
                     'last_name' => $request->get('last_name'),
+                    'profile_pic' => $new_name2,
                     'business_name' => $request->get('business_name'),
                     'business_address' => $request->get('business_address'),
                     'mobile_number' => $request->get('mobile_number'),

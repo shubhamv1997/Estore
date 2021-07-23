@@ -215,8 +215,21 @@ class ApprovalRetailerController extends Controller
     public function edit($id)
     {
         $countries=Country::all();
+        $idd = Auth::id();
+        $countries=Country::all();
+        $users=DB::table('users')
+        ->select('users.*')->where('id',$idd)
+        ->get();
+ 
+       
+
+
         $retailers = Retailer::find($id);
-        return view('admin/approveretailer.edit',compact('retailers','countries'));
+        $banks = DB::table('banks')
+                ->where('user_id', '=', $id)
+                ->get();
+
+        return view('admin/approveretailer.edit',compact('retailers','banks','countries','users'));
 
     }
 
@@ -229,7 +242,60 @@ class ApprovalRetailerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        echo $id;
+       // die;
+        /*$request->validate([
+            'first_name'=>'required',
+            'last_name'=>'required',
+
+            'business_name'=>'required',
+            'business_address'=>'required',
+            'mobile_number'=>'required',
+            'business_phone'=>'required',
+            'document_name'=>'required',
+            'front_pic'=>'required|max:2048',
+            'back_pic'=>'required|max:2048',
+            'business_country'=>'required',
+            'business_city'=>'required',
+            'firstly_charges'=>'required',
+            'discount'=>'required',
+            'monthly_charges'=>'required'
+            ]);
+            */
+            //$id = Auth::id();
+        $front_pic = $request->file('front_pic');
+        $back_pic = $request->file('back_pic');
+        $new_name1 = rand(). "." . $front_pic->getClientOriginalExtension();
+        $front_pic->move(public_path('retailerpics'), $new_name1);
+        
+        $new_name2 = rand(). "." . $back_pic->getClientOriginalExtension();
+        $back_pic->move(public_path('retailerpics'), $new_name2);
+
+        
+
+        $retailers = Retailer::find($id);
+        $retailers->first_name=$request->get('first_name');
+        $retailers->last_name=$request->get('last_name');
+        $retailers->business_name=$request->get('business_name');
+        $retailers->business_address=$request->get('business_address');
+        $retailers->mobile_number=$request->get('mobile_number');
+        $retailers->business_phone=$request->get('business_phone');
+        $retailers->document_name=$request->get('document_name');
+        $retailers->business_country=$request->get('business_country');
+        $retailers->firstly_charges=$request->get('firstly_charges');
+        $retailers->discount=$request->get('discount');
+        $retailers->front_pic=$new_name1;
+        $retailers->back_pic=$new_name2;
+        $retailers->monthly_charges=$request->get('monthly_charges');
+
+
+        $retailers->save();
+
+       
+
+
+        return redirect()->back()->with('Done','Retailer Updated Successfully');
+    
     }
 
     /**
@@ -251,6 +317,27 @@ class ApprovalRetailerController extends Controller
             $city=City::where('country_id',$business_country)->get();
          
             return response()->json($city);
+           
+    }
+
+
+    public function updatebank(Request $request)
+    {
+
+             $retailer_id= $request->post('retailer_id');
+             $bankDetails=[
+                 'bank_name'=>$request->post('bank_name'),
+                 'account_number'=>$request->post('account_number'),
+                 'ifsc'=>$request->post('ifsc')
+
+
+             ];
+            $retailer_bank = Bank::where('user_id', $retailer_id)
+            ->update($bankDetails);
+
+
+        return redirect()->back()->with('Done','Bank Information Updated Successfully');
+    
            
     }
 

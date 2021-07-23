@@ -81,32 +81,37 @@
                             <table class="table table-bordered"> <thead> 
                             <tr>
                                  <th>#</th> 
-                                 <th>Cutomer Name</th>
-                                 <th>Retailer</th> 
+                                 <th>User Name</th>
                                   <th>Product Name</th> 
                                   <th>Quantity</th> 
-                                  
-                                  <th>Date of Order</th>
-                                  <th>Price</th>
-                                   <th>Status</th> 
-                             </tr> 
+                                  <th>Amount</th>
+                                   <th>Order Date</th> 
+                                   <th>Status</th>
+                                   <th>Approval</th>
+                                   
                              </thead> 
                              <tbody> 
-                             @foreach($u_order as $uo)
-
-                             <tr>
-                                 <th scope="row">{{ $loop->iteration }}</th> 
-                                 <td>{{ $uo->order_id}}</td>
-                                 <td>{{ $uo->retailer_id}}</td>
-                                 <td>{{ $uo->product_id}}</td>
-                                 <td>{{ $uo->Quantity}}</td>
-                                 <td>{{ $uo->order_date}}</td>
-                                 <td>{{ $uo->amount}}</td>
-                                 <td>{{ $uo->status}}</td>
-                                 
-                            @endforeach
-                            </tr> 
-                             
+                             @if(count($u_orders) >= 1 )
+                                @foreach ($u_orders as $u)
+                                <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $u->name}}</td>
+                                <td>{{ $u->product_name}}</td>
+                                <td>{{ $u->Quantity}}</td>
+                                <td>${{ $u->amount}}</td>
+                                <td>{{ $u->order_date}} </td>
+                                <td>{{ $u->status}}</td>
+                                
+                                </tr>
+                                @endforeach  
+                                
+                                
+                                @else
+                         <tr>
+                                <td colspan="5">No Data Found</td>
+                         </tr>
+                               @endif
+					
                         </tbody> 
                     </table>
 

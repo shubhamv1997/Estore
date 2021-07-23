@@ -29,7 +29,8 @@ class ProductController extends Controller
     public function index()
     {
         $status='unapproval';
-        
+        $user_email=auth()->user()->email;
+       
         
         $products=DB::table('products')
         ->select('products.*','countries.country_name','cities.city_name','categories.category_name','subcategories.subcategory_name','users.name','product_images.image_1','product_images.image_2','product_images.image_3','product_attributes.att_name1','product_attributes.att_value1','product_attributes.att_name2','product_attributes.att_value2')
@@ -41,6 +42,7 @@ class ProductController extends Controller
         ->join('product_images','product_images.product_id','=','products.id')
         ->join('product_attributes','product_attributes.product_id','=','products.id')
         ->where('status', $status)
+        ->where('users.email',$user_email)
         ->orderBy('id', 'DESC')->get();
          return view('retailer/products.index',compact('products'));
 
@@ -196,7 +198,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        echo $id;
+       // echo $id;
+       
         $products=DB::table('products')
         ->select('products.*','countries.country_name','cities.city_name','categories.category_name','subcategories.subcategory_name','users.name','product_images.image_1','product_images.image_2','product_images.image_3','product_attributes.att_name1','product_attributes.att_value1','product_attributes.att_name2','product_attributes.att_value2')
         ->join('countries','countries.id','=','products.country_id')
@@ -208,7 +211,7 @@ class ProductController extends Controller
         ->join('product_attributes','product_attributes.product_id','=','products.id')
         ->where('products.id', $id)
          ->get();
-        //  echo $products;
+         // echo $products;
         return view('retailer/products.show',compact('products'));
     
     }
@@ -221,7 +224,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        echo $id;
+        //echo $id;
 
         $idd = Auth::id();
         $countries=Country::all();
@@ -307,16 +310,10 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         
 
-        $pi = DB::table('product_images')
-        ->where('product_id', '=', $id)
-        ->get();
 
-        $image_path1 = public_path('productpics').'/'.$pi->image_1;
-        $image_path2 = public_path('productpics').'/'.$pi->image_2;
-        $image_path3 = public_path('productpics').'/'.$pi->image_3;
-        unlink($image_path1);
-        unlink($image_path2);
-        unlink($image_path3);
+       DB::table('product_attributes')->where('product_id', $id)->delete();
+       DB::table('product_images')->where('product_id', $id)->delete();
+
         $product->delete();
         return redirect()->back()->with('Success','Product Data Deleted');
     }

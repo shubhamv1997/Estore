@@ -35,6 +35,7 @@
                                    <th>Attribute Names and Values</th>
                                    
                                    <th>Status</th>
+                                   <th>Action</th>
                                    
                              </thead> 
                              <tbody> 

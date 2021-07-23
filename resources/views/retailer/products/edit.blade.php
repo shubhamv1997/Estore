@@ -340,7 +340,7 @@
                   },
                   success: function(data)
                   {
-                      alert(data);
+                    //  alert(data);
                     op+='<option value="" selected disabled>Select Sale City</option>';
                     for(var i=0;i<data.length;i++)
                     {
@@ -363,7 +363,7 @@
 <script>
     jQuery(document).ready(function(){
             jQuery('#category_id').change(function(e){
-   alert();
+   //alert();
                 var op=" ";
 
                e.preventDefault();
@@ -378,7 +378,7 @@
                   },
                   success: function(data)
                   {
-                      alert(data);
+                     // alert(data);
                     op+='<option value="" selected disabled>Select Subcategory</option>';
                     for(var i=0;i<data.length;i++)
                     {

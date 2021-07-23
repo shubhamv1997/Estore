@@ -84,13 +84,13 @@
                   </div>
                   <div class="form-group col-md-4">
 
-                  <label for="student_name">Bunisess Phone No.</label>
+                  <label for="business_phone">Bunisess Phone No.</label>
                   
                   <input type="text" name="business_phone" value="{{ $retailers->business_phone}}" class="form-control" id="business_phone" placeholder="Business Phone Number"/>
                      </div>
                   <div class="form-group col-md-4">
 
-                  <label for="contact">Document Name</label>
+                  <label for="document_name">Document Name</label>
                   <input type="text" class="form-control" id="document_name" value="{{ $retailers->document_name }}" name="document_name" placeholder="document Name">
                     
                   </div>
@@ -98,7 +98,7 @@
 
                 <div class="form-row">
                   <div class="form-group col-md-4">
-                    <label for="gender">Document Front Pic</label>
+                    <label for="front_pic">Document Front Pic</label>
                     <input type="file" class="form-control" id="front_pic" name="front_pic" placeholder="document Name">
                     <img src="{{ URL::to('/')}}/retailerpics/{{ $retailers->front_pic}}" class="img-responsive" style="width:50px;height:50px"/>
                       
@@ -155,13 +155,13 @@
 
                 <div class="form-row">
                   <div class="form-group col-md-4">
-                      <label for="permanent_address">Discount Percentage</label>
+                      <label for="permanent_discount_amountaddress">Discount Percentage</label>
                       <input type="text" class="form-control" id="discount_amount" readonly="readonly" value="{{ $retailers->discount_amount}}" name="discount_amount" placeholder="Discount Amount" value="0">
                   </div>
 
                   <div class="form-group col-md-4">
-                      <label for="permanent_address">Monthly Charges</label>
-                      <input type="text" class="form-control" id="monthly_charges" name="monthly_charges" placeholder="Monthly Charges">
+                      <label for="monthly_charges">Monthly Charges</label>
+                      <input type="text" class="form-control" id="monthly_charges" value="{{ $retailers->monthly_charges}}" name="monthly_charges" placeholder="Monthly Charges">
                   </div>
 
                   <div class="form-group col-md-4">
@@ -180,32 +180,33 @@
                 <div class="tab-pane" id="b">
 
 
-                <form role="form" action="{{ route('retailerupdate',$retailers->id) }}" method="post" enctype="multipart/form-data">
+                <form role="form" action="{{ route('retailerbank') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
-                 
-                
+                @foreach ($banks as $rb)
+               
+                <input type="hidden" name="retailer_id" value="{{ $rb->user_id}}"/>
                 <div class="form-row">
                   <div class="form-group col-md-4">
                   <label for="permanent_address">Bank Name</label>
-                      <input type="text" class="form-control" id="bank_name" value="{{ $retailers->bank_name}}" name="bank_name" placeholder="Bank Name">
+                      <input type="text" class="form-control" value="{{ $rb->bank_name}}" id="bank_name" value="{{ $retailers->bank_name}}" name="bank_name" placeholder="Bank Name">
                  
                     </div>
                   <div class="form-group col-md-4">
                   <label for="password">Account Number</label>
-                     <input type="text" class="form-control" value="{{ $retailers->account_number }}" id="account_number" name="account_number" placeholder="Account Number">
+                     <input type="text" class="form-control" value="{{ $rb->account_number }}" id="account_number" name="account_number" placeholder="Account Number">
                  
                   </div>
                   <div class="form-group col-md-4">
                   <label for="password">IFSC Code</label>
-                  <input type="text" class="form-control" id="ifsc" name="ifsc" value="{{ $retailers->ifsc}}" placeholder="IFSC Code">
+                  <input type="text" class="form-control" id="ifsc" name="ifsc" value="{{ $rb->ifsc}}" placeholder="IFSC Code">
                  
                       
                   </div>
                  
                 </div>
                 <button type="submit" class="btn btn-primary">Update Retailer Bank Information</button>
-                 
+                 @endforeach
             </form>
                 </div>
                 </div>
