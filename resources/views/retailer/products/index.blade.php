@@ -30,7 +30,6 @@
                                    <th>Status</th>
                                    <th>View</th>
                                    <th>Edit</th>
-                                   <th>Delete</th>
                                    
                              </thead> 
                              <tbody> 
@@ -50,13 +49,7 @@
                                 <td>{{ $p->status}}</td>
                                 <td><a href="{{ route('retailerproductshow',$p->id)}}"><i class="fa fa-eye"></i></a></td>
                                 <td><a href="{{ route('retailerproductedit',$p->id)}}"><i class="fa fa-edit"></i></a></td>
-                                <td><form action="{{ route('retailerproductdestroy',$p->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    
-                                    <button class="fa fa-times text-danger text btn btn-outline-danger"type="submit"></button>
-                                </form>
-                                </td>
+                               
                               
                                 </tr>
                                 @endforeach   

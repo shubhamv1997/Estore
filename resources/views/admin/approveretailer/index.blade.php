@@ -40,7 +40,7 @@
                                     <th>After Discount</th> 
                                     
                                     <th>Edit</th>
-                                    <th>Delete</th>
+                                    
                                 </tr> 
                             </thead> 
                             <tbody> 
@@ -69,7 +69,7 @@
                                 <td>{{ $r->after_discount}}</td>
  
                                 <td><a href="{{ route('retaileredit',$r->id)}}"><i class="fa fa-edit"></i></a></td>
-                                <td><i class="fa fa-trash"></i></td>
+                                
                               
                                 </tr>
                                 @endforeach

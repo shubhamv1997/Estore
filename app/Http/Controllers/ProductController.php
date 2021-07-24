@@ -307,15 +307,15 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
+       // $product = Product::findOrFail($id);
         
 
 
-       DB::table('product_attributes')->where('product_id', $id)->delete();
-       DB::table('product_images')->where('product_id', $id)->delete();
+      // DB::table('product_attributes')->where('product_id', $id)->delete();
+     //  DB::table('product_images')->where('product_id', $id)->delete();
 
-        $product->delete();
-        return redirect()->back()->with('Success','Product Data Deleted');
+      //$product->delete();
+       // return redirect()->back()->with('Success','Product Data Deleted');
     }
 
     

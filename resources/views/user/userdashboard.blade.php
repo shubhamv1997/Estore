@@ -123,7 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														<h6>All Women's Collections</h6>
 														
 														@foreach($subwomen as $w)
-                                                    <li><a href="">{{ $w->subcategory_name}}</a></li>
+                                                    <li><a href="{{ route('showwomenproducts',$w->id)}}">{{ $w->subcategory_name}}</a></li>
                                                         @endforeach
                     
 														</ul>
@@ -150,9 +150,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</div>
 										</ul>
 									</li>
-									<li><a href="{{ route('registercreate') }}">Register</a></li>
+									@guest
 									<li><a href="{{ route('userlogin')}}">Login</a></li>
+									
+									<li><a href="{{ route('registercreate') }}">Register</a></li>
+									@if (Route::has('register'))
+									@endif
+                                    @else
+
+									<li><a  onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    
+									
+									    	
+
+                                        	 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+									</a></li>
+									<li><a href="{{ route('registercreate') }}">View Order</a></li>
+									
+                                       @endguest     
 									<li><a href="#">Contact</a></li>
+
+
+									
 								</ul>
 							</div>
 							</nav>

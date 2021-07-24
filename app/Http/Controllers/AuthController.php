@@ -27,7 +27,7 @@ class AuthController extends Controller
             elseif($type=="User")
             {
              
-           //return redirect('userhome')->with('Done','Successfully Login as User');
+           return redirect('userhome')->with('Done','Successfully Login as User');
             }
             elseif($type=="Retailer")
             {
@@ -37,8 +37,9 @@ class AuthController extends Controller
            
             else
             {
-                return redirect::back()->withErrors(['msg', "Alert! Something is Wrong."]);
-                
+                //return redirect::back()->withErrors(['msg', "Alert! Something is Wrong."]);
+                return redirect()->with('Done','Alert! Somthing Wrongs');
+           
             }
            
            
