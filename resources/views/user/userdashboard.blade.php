@@ -37,38 +37,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <body>
 <!-- header -->
-	<div class="agileits_header">
+	<!-- <div class="agileits_header">
 		<div class="container">
 			<div class="w3l_offers">
 				<p>WELCOME TO OUR SHOPPING SITE.</p>
 			</div>
 			<div class="agile-login">
 				<ul>
-					<!--<li><a href="#"> Create Account Vendor</a></li>-->
-					<li><a href="{{ route('retailerlogin')}}">Retailer Login</a></li>
+					<li></li>
 					
 					
 				</ul>
 			</div>
 			<div class="product_list_header">  
-
-			@php $total = 0 @endphp
-
-			@foreach((array) session('cartdetail') as $id => $details)
-				@php $total += $details['price'] * $details['quantity'] @endphp
-
-			@endforeach
-			<a href="{{ url('cart2')}}">
-			<p class="text-info">Total: <span class="text-info">$ {{ $total }}</span></p>
-			</a><!--<form action="#" method="post" class="last"> 
-						<input type="hidden" name="cmd" value="_cart">
-						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-					</form> --> 
-			</div>
-			<div class="clearfix"> </div>
+			
 		</div>
-	</div>
+	</div> -->
 
 	<div class="logo_products">
 		<div class="container">
@@ -81,7 +65,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="w3ls_logo_products_left">
 				<h1><a href="{{ route('home') }}">E-Commerce</a></h1>
 			</div>
-		
+			<div class="product_list_header">
+				<a class="btn btn-warning" href="{{ route('retailerlogin')}}">Retailer Login</a>				
+			</div>
 			
 			<div class="clearfix"> </div>
 		</div>
@@ -186,6 +172,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 									
 								</ul>
+								<div class="text-right">
+								@php 
+									$total = 0; 
+									$totalitem = 0;
+								@endphp
+
+									@foreach((array) session('cartdetail') as $id => $details)
+										@php 
+											$total += $details['price'] * $details['quantity'];
+											$totalitem = $totalitem+1;
+										@endphp
+
+									@endforeach
+									<a class="btn btn-default" href="{{ url('cart2')}}">
+											<i class="fa fa-2x fa-cart-arrow-down"></i>
+											<span class="text-info" style="font-size:1.6em">
+												{{$totalitem}} (${{ $total }})
+											</span>
+									</a><!--<form action="#" method="post" class="last"> 
+												<input type="hidden" name="cmd" value="_cart">
+												<input type="hidden" name="display" value="1">
+												<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+											</form> --> 
+									</div>
+									<div class="clearfix"> </div>
+								</div>
 							</div>
 							</nav>
 			</div>

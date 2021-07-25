@@ -37,14 +37,55 @@
 				
 			@foreach($product as $p)
 			
-			<div class="col-md-4" style="border:1px solid #999;margin:10px;width:30.33333333% !important;">
-
-			<img src="{{ URL::to('/')}}/productpics/{{ $p->image_1}}" alt=" " class="img-responsive"/>
-				<a href="{{ route('showdetails',$p->id)}}"><p style="color:black;text-align:center;font-size:14px;text-transform:capitalize;line-height:50px">{{ $p->product_name}}</p></a>
-				<h3 style="font-weight: 600;font-size: 1em;color: #212121;text-align: center;">${{$p->amount}}</h3>
-			</div>
+				<div class="col-md-4 top_brand_left-1">
+					<div class="hover14 column">
+						<div class="agile_top_brand_left_grid">
+							<div class="agile_top_brand_left_grid_pos">
+								<!-- <img src="{{ URL::to('/')}}/productpics/{{ $p->image_1}}" alt=" " class="img-responsive"> -->
+							</div>
+							<div class="agile_top_brand_left_grid1">
+								<figure>
+									<div class="snipcart-item block">
+										<div class="snipcart-thumb">
+											<a href="{{ route('showdetails',$p->id)}}"><img class=" img-responsive" style="height:100px"title=" " alt=" " src="{{ URL::to('/')}}/productpics/{{ $p->image_1}}"></a>		
+											<p><b>{{ $p->product_name}}</b></p>
+											<!-- <div class="stars">
+												<i class="fa fa-star blue-star" aria-hidden="true"></i>
+												<i class="fa fa-star blue-star" aria-hidden="true"></i>
+												<i class="fa fa-star blue-star" aria-hidden="true"></i>
+												<i class="fa fa-star blue-star" aria-hidden="true"></i>
+												<i class="fa fa-star gray-star" aria-hidden="true"></i>
+											</div> -->
+												<!-- <h4>$ 30 <span>$ 60</span></h4> -->
+												<h4>${{$p->amount}}</h4>
+										</div>
+										<div class="snipcart-details top_brand_home_details">
+											<form action="#" method="post">
+												<fieldset>
+													<!-- <input type="hidden" name="cmd" value="_cart">
+													<input type="hidden" name="add" value="1">
+													<input type="hidden" name="business" value=" ">
+													<input type="hidden" name="item_name" value="Fortune Sunflower Oil">
+													<input type="hidden" name="amount" value="35.99">
+													<input type="hidden" name="discount_amount" value="1.00">
+													<input type="hidden" name="currency_code" value="USD">
+													<input type="hidden" name="return" value=" ">
+													<input type="hidden" name="cancel_return" value=" "> -->
+													<a href="{{ route('addtocart', $p->id) }}" class="btn btn-info btn-block text-center" style="margin-bottom:10px" role="button">Add to cart</a>
+													
+												</fieldset>
+											</form>
+										</div>
+									</div>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 
 			@endforeach
+
     		</div>
 			<div class="clearfix"> </div>
 		</div>
