@@ -51,11 +51,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="product_list_header">  
-					<form action="#" method="post" class="last"> 
+
+			@php $total = 0 @endphp
+
+			@foreach((array) session('cartdetail') as $id => $details)
+				@php $total += $details['price'] * $details['quantity'] @endphp
+
+			@endforeach
+			<a href="{{ url('cart2')}}">
+			<p class="text-info">Total: <span class="text-info">$ {{ $total }}</span></p>
+			</a><!--<form action="#" method="post" class="last"> 
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-					</form>  
+					</form> --> 
 			</div>
 			<div class="clearfix"> </div>
 		</div>

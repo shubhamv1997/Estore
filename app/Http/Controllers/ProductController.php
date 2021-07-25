@@ -95,7 +95,9 @@ class ProductController extends Controller
             'att_name1'=>'required', 
             'att_value1'=>'required', 
             'att_name2'=>'required', 
-            'att_value2'=>'required', 
+            'att_value2'=>'required',  
+
+        
         ]);
 
         
@@ -103,6 +105,8 @@ class ProductController extends Controller
         $image_1 = $request->file('image_1');
         $image_2 = $request->file('image_2');
         $image_3 = $request->file('image_3');
+        
+
         $new_name1 = rand(). "." . $image_1->getClientOriginalExtension();
         $image_1->move(public_path('productpics'), $new_name1);
         
@@ -143,6 +147,8 @@ class ProductController extends Controller
            $product->specification = $request->specification;
            $unapproval="unapproval";
            $product->status = $unapproval;
+           
+           $product->pics =$new_name1;
 
            $product->save();
 

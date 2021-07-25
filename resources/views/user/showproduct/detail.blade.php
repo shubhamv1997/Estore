@@ -1,9 +1,27 @@
 @extends('user.userdashboard')
 @section('user')
 
+
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+		<div class="container">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</li>
+				<li class="active">Products</li>
+
+				                    @guest
+									@if (Route::has('register'))
+									@endif
+									@else
+									<p style="float:right">Welcome: <span class="fa fa-user"></span> {{ Auth::user()->name }}</p>
+									
+
+									@endguest
+			</ol>
+		</div>
+	</div>
 <!-- //breadcrumbs -->
-
-
 <div class="products">
 		<div class="container">
 			<div class="agileinfo_single">
@@ -71,6 +89,8 @@
 						<p>{{ $p2->att_name1}}: {{ $p2->att_value1}}</p>
 						<p>{{ $p2->att_name2}}: {{ $p2->att_value2}}</p>
 					</div>
+					<p class="btn-holder"><a href="{{ route('addtocart', $p2->product_id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
+
 
                     @endforeach
 

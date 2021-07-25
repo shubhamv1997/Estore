@@ -259,8 +259,10 @@ Route::get('/', [App\Http\Controllers\UserHomeController::class, 'index'])->name
 Route::get('user/showproducts/{id}', [App\Http\Controllers\ShowProductController::class,'show'])->name('showproducts');
 Route::get('user/showproducts/detail/{id}',[App\Http\Controllers\ShowProductController::class,'edit'])->name('showdetails');
 
-
-
+Route::get('user/showproducts/addtocart/{id}', [App\Http\Controllers\ShowProductController::class, 'addToCart'])->name('addtocart');
+Route::get('cart2', [App\Http\Controllers\ShowProductController::class, 'cart2'])->name('cart2');
+Route::post('updateCart', [App\Http\Controllers\ShowProductController::class, 'updateCart'])->name('updateCart');
+Route::get('removefromcart/{id}', [App\Http\Controllers\ShowProductController::class, 'remove'])->name('removefromcart');
 ##################################################################
 ###############                           ########################
 ############### User Show Women Product Page Route      ################
@@ -269,7 +271,6 @@ Route::get('user/showproducts/detail/{id}',[App\Http\Controllers\ShowProductCont
 
 
 Route::get('user/showwomenproducts/{id}', [App\Http\Controllers\ShowWomenProductController::class,'show'])->name('showwomenproducts');
-Route::get('user/showwomenproducts/detail/{id}',[App\Http\Controllers\ShowWomenProductController::class,'edit'])->name('showwomendetails');
 
 
 ##################################################################

@@ -23,6 +23,7 @@ class Product extends Model
         'return_policy',
         'specification',
         'status',
+        'pics',
         'user_id'
     ];
 }

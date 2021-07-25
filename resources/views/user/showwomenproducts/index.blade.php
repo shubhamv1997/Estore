@@ -40,7 +40,7 @@
 			<div class="col-md-4" style="border:1px solid #999;margin:10px;width:30.33333333% !important;">
 
 			<img src="{{ URL::to('/')}}/productpics/{{ $p->image_1}}" alt=" " class="img-responsive"/>
-				<a href="{{ route('showwomendetails',$p->id)}}"><p style="color:black;text-align:center;font-size:14px;text-transform:capitalize;line-height:50px">{{ $p->product_name}}</p></a>
+				<a href="{{ route('showdetails',$p->id)}}"><p style="color:black;text-align:center;font-size:14px;text-transform:capitalize;line-height:50px">{{ $p->product_name}}</p></a>
 				<h3 style="font-weight: 600;font-size: 1em;color: #212121;text-align: center;">${{$p->amount}}</h3>
 			</div>
 
