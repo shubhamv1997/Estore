@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Subcategory;
 use App\Models\UserRegister;
-
+use Auth;
 use DB;
 use App\Models\User;
 
@@ -37,7 +37,7 @@ class UserRegisterController extends Controller
         $subkids = Subcategory::where('type', $kidsstype)
         ->get();
 
-return view('user/userlogin.index',compact('submen','subwomen','subkids'));
+        return view('user/userlogin.index',compact('submen','subwomen','subkids'));
    
     }
 
@@ -59,7 +59,7 @@ return view('user/userlogin.index',compact('submen','subwomen','subkids'));
         $subkids = Subcategory::where('type', $kidsstype)
         ->get();
 
-return view('user/userregister.create',compact('submen','subwomen','subkids'));
+        return view('user/userregister.create',compact('submen','subwomen','subkids'));
        
     }
 
@@ -127,8 +127,8 @@ return view('user/userregister.create',compact('submen','subwomen','subkids'));
          {
              DB::rollback();
          }
-  // return redirect()->back()->with('Done','User Information  Added');
-          return redirect('user/userlogin')->with('Done','User Information  Added');
+        // return redirect()->back()->with('Done','User Information  Added');
+          return redirect('user/userlogin')->with('Done1','User Information  Added');
            
       
     
@@ -185,5 +185,33 @@ return view('user/userregister.create',compact('submen','subwomen','subkids'));
     public function destroy($id)
     {
         //
+    }
+
+    public function confirmaddress(Request $request){
+        $id = Auth::id();
+        if(isset($id) && $id!=null){
+            $user=DB::table('users')
+            ->select('users.email','users.id','user_registers.*')
+            ->join('user_registers','user_registers.email','=','users.email')
+            ->where('users.id',$id)->first();
+            $menstype="Mens";
+            $womenstype="Womens";
+            $kidsstype="Kids";
+            $submen = Subcategory::where('type', $menstype)
+            ->get();
+            $subwomen = Subcategory::where('type', $womenstype)
+            ->get();
+            $subkids = Subcategory::where('type', $kidsstype)
+            ->get();
+            $cart = $request->session()->get('cartdetail');
+            if(isset($cart))
+                return view('user.orders.confirmaddress',compact('user','submen','subwomen','subkids'));            
+            else
+                return view('/',compact('submen','subwomen','subkids'));            
+
+        }
+        else{
+           return redirect('user/userlogin')->with('Done','Please login First to Checkout');
+        }
     }
 }

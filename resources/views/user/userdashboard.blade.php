@@ -232,9 +232,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>Information</h3>
 					<ul class="info"> 
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Contact Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Register</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Login</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="">Contact Us</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ url('user/userregister')}}">Register</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ url('user/userlogin')}}">Login</a></li>
 						
 					</ul>
 				</div>

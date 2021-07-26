@@ -292,4 +292,17 @@ Route::post('user/userregister', [App\Http\Controllers\UserRegisterController::c
 
 
 Route::get('user/userlogin',[App\Http\Controllers\UserRegisterController::class,'index'])->name('userlogin');
-Route::get('/userhome', [App\Http\Controllers\UserRegisterController::class,'index'])->name('rhome');
+Route::get('/userhome', [App\Http\Controllers\ShowProductController::class,'cart2'])->name('rhome');
+
+Route::get('user/confirmaddress',[App\Http\Controllers\UserRegisterController::class,'confirmaddress'])->name('confirmaddress');
+
+// Route::get('payment', [App\Http\Controllers\PayPalController::class,'payment'])->name('payment');
+
+// Route::get('cancel', [App\Http\Controllers\PayPalController::class,'cancel'])->name('payment.cancel');
+
+// Route::get('payment/success', [App\Http\Controllers\PayPalController::class,'success'])->name('payment.success');
+
+Route::get('handle-payment', [App\Http\Controllers\PayPalController::class,'handlePayment'])->name('make.payment');
+Route::get('cancel-payment',  [App\Http\Controllers\PayPalController::class,'paymentCancel'])->name('cancel.payment');
+Route::get('payment-success', [App\Http\Controllers\PayPalController::class,'paymentSuccess'] )->name('success.payment');
+Route::view('pay','user.welcome');

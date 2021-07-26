@@ -54,7 +54,7 @@
             <strong></strong>
         </div>
     </div>
-    @php $total = 0 @endphp
+    @php $total = 0; $i=1; @endphp
     @if(session('cartdetail'))
         @foreach(session('cartdetail') as $id => $details)
             @php $total += $details['price'] * $details['quantity'] @endphp
@@ -63,7 +63,7 @@
                     
                 </div>
                 <div class="col-md-1" style="line-height:100px; border-left:1px solid grey">
-                    {{ $id }}
+                    {{ $i }} @php $i++; @endphp
                 </div>
                 <div class="col-md-2" style="line-height:100px; border-left:1px solid grey">
                     {{ $details['name'] }}
@@ -104,7 +104,7 @@
         </div>
         <div class="col-md-8 text-right">
             <br/>
-            <button class="btn btn-success">Checkout</button>
+            <a href="{{ url('user/confirmaddress') }}" class="btn btn-success">Checkout</a>
             <h3><strong>Total ${{ $total }}</strong></h3>   
         </div>
         
