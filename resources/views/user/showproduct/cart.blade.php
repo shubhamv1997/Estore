@@ -97,6 +97,13 @@
                 
             </div>
         @endforeach
+    @else
+        <div class="row border border-black" style="border:1px solid grey">
+            <div class="col-md-12" style="line-height:100px; border-left:1px solid grey">
+                <h1 class="text-center" style="padding:20px">No Item In Cart </h1>
+            </div>
+            
+        </div>
     @endif
     <div class="row">
         <div class="col-md-4 " ><br/>
@@ -104,7 +111,9 @@
         </div>
         <div class="col-md-8 text-right">
             <br/>
-            <a href="{{ url('user/confirmaddress') }}" class="btn btn-success">Checkout</a>
+            @if(session('cartdetail'))
+                <a href="{{ url('user/confirmaddress') }}" class="btn btn-success">Checkout</a>
+            @endif
             <h3><strong>Total ${{ $total }}</strong></h3>   
         </div>
         

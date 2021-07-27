@@ -20,24 +20,36 @@
 <!-- //breadcrumbs -->
 <!-- login -->
 
-<div class="login">
+<div class="login" style="padding:1em">
 		<div class="container">
 			<div class="row">
+                <form action="{{ route('saveorderandpay')}}" method="post">
 				<div class="col-md-6" style="padding:20px">
 					<div class="login-form-grids" style="width:100%;margin:0px">
 						<h5>profile information</h5>
-						<form action="{{ route('registerstore')}}" method="post">
+						
 							@csrf	
 							<input type="text" name="first_name" placeholder="First Name..." style="color:black" value="{{ $user->first_name}}" required=" " >
 							<input type="text" name="last_name"  placeholder="Last Name..." required=" " style="color:black" value="{{ $user->last_name}}" >
 							<br/>
 							<input type="text" name="mobile_number" placeholder="Mobile No...." required=" " style="color:black" value="{{ $user->mobile_number}}" >
 							<br/>
-							<textarea  name="address" placeholder="Address..." required=" " 
-							style="color:black !important;outline: none;border:1px solid #DBDBDB;padding: 10px 10px 10px 10px;font-size: 14px;color: #999;display: block;width: 100%;text-align:left;" >
-                            {{ trim($user->address)}}
+                            <input type="text" name="address"  required=" " style="color:black"  value="{{ trim($user->address)}}" >
+							<br/>
+                            Shipping Address
+                            <textarea type="text" class="form-control"name="billing_address"placeholder="Billing Address" required=" " style="color:black" >
                             </textarea>
-						</form>
+							<br/>
+                            <input type="text" name="city" required=" " placeholder="City" style="color:black" >
+							<br/>
+                            <input type="text" name="pincode" required=" " placeholder="Pincode" style="color:black" >
+							<br/>
+                            <h3>Want Local Pickup from Store</h3><br/>
+                            <input type="radio" name="local_pickup" required=" " value="1"><span style="font-size:18px">Yes</span>
+                            <input type="radio" name="local_pickup" required=" " value="0" checked="checked" ><span style="font-size:18px">No</span>
+							<br/>
+                            
+						
 					</div>					
 				</div>
 				<div class="col-md-6" style="padding:20px">
@@ -69,14 +81,19 @@
                     <div class="row">
                         <div class="col-md-12 text-right">
                             <br/>
-                            <h3><strong>Total ${{ $total }}</strong></h3>   
-                            <a href="{{ route('make.payment') }}" class="btn btn-info btn-block" style="margin:10px 0px;padding:10px">
-                                Pay Via <strong>${{ $total }}</strong> Paypal
-                            </a href="{{ route('make.payment') }}">
+                            <h3><strong>Total ${{ $total }}</strong></h3>  
+                            <br/>
+                            <img src="{{ asset('dist/images/payment.png') }}" class="img-responsive"/> 
+                            {{-- <a href="{{ route('make.payment') }}" class="btn btn-info btn-block" style="margin:10px 0px;padding:10px"> --}}
+                            <button  class="btn btn-info btn-block" style="margin:10px 0px;padding:10px">
+                                <h3>Pay Via <strong>${{ $total }}</strong> Paypal</h3>
+                            </button>
+                            {{-- </a > --}}
                         </div>
                     </div>
 					
 				</div>
+            </form>
 			</div>
 		</div>
 </div>

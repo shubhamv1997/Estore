@@ -303,6 +303,6 @@ Route::get('user/confirmaddress',[App\Http\Controllers\UserRegisterController::c
 // Route::get('payment/success', [App\Http\Controllers\PayPalController::class,'success'])->name('payment.success');
 
 Route::get('handle-payment', [App\Http\Controllers\PayPalController::class,'handlePayment'])->name('make.payment');
-Route::get('cancel-payment',  [App\Http\Controllers\PayPalController::class,'paymentCancel'])->name('cancel.payment');
-Route::get('payment-success', [App\Http\Controllers\PayPalController::class,'paymentSuccess'] )->name('success.payment');
-Route::view('pay','user.welcome');
+Route::get('cancel-payment/{id}',  [App\Http\Controllers\PayPalController::class,'paymentCancel'])->name('cancel-payment');
+Route::get('payment-success/{id}', [App\Http\Controllers\PayPalController::class,'paymentSuccess'] )->name('payment-success');
+Route::post('saveorderandpay', [App\Http\Controllers\OrderDetailController::class,'saveorderandpay'] )->name('saveorderandpay');

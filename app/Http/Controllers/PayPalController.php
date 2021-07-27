@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\ExpressCheckout;
+use App\Models\OrderDetail;
 
 class PayPalController extends Controller
 {
@@ -26,11 +27,12 @@ class PayPalController extends Controller
                 $total += $details['price'] * $details['quantity'];
             }
             
-    
-            $product['invoice_id'] = 100;
+            $orderid = $request->session()->get('orderid');
+            $product['invoice_id'] = $orderid;
             $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
-            $product['return_url'] = route('success.payment');
-            $product['cancel_url'] = route('cancel.payment');
+            $product['return_url'] = "http://localhost:8000/payment-success/{$orderid}";
+            $product['cancel_url'] = "http://localhost:8000/cancel-payment/{$orderid}";
+            // echo route('rhome'); die();
             $product['total'] = $total;
     
             $paypalModule = new ExpressCheckout;
@@ -42,18 +44,29 @@ class PayPalController extends Controller
         }
     }
    
-    public function paymentCancel()
+    public function paymentCancel($id,Request $request)
     {
-        dd('Your payment has been declend. The payment cancelation page goes here!');
+        // dd('Your payment has been declend. The payment cancelation page goes here!');
+        OrderDetail::where('id', $id)
+        ->update(['status' => 'paymentfailed']);
+        $request->session()->forget('orderid');
+        $request->session()->forget('cartdetail');
+
+        dd('Order Status is Canacle Updated');
     }
   
-    public function paymentSuccess(Request $request)
+    public function paymentSuccess($id,Request $request)
     {
         $paypalModule = new ExpressCheckout;
         $response = $paypalModule->getExpressCheckoutDetails($request->token);
   
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
-            dd('Payment was successfull. The payment success page goes here!');
+            OrderDetail::where('id', $id)
+            ->update(['status' => 'paymentsuccess',"is_order_paid"=>1]);
+            $request->session()->forget('orderid');
+            $request->session()->forget('cartdetail');
+
+            dd('Order Status is Paid');
         }
   
         dd('Error occured!');
