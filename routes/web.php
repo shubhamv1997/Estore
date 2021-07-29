@@ -306,3 +306,5 @@ Route::get('handle-payment', [App\Http\Controllers\PayPalController::class,'hand
 Route::get('cancel-payment/{id}',  [App\Http\Controllers\PayPalController::class,'paymentCancel'])->name('cancel-payment');
 Route::get('payment-success/{id}', [App\Http\Controllers\PayPalController::class,'paymentSuccess'] )->name('payment-success');
 Route::post('saveorderandpay', [App\Http\Controllers\OrderDetailController::class,'saveorderandpay'] )->name('saveorderandpay');
+Route::get('myorders', [App\Http\Controllers\OrderDetailController::class,'myorders'] )->name('myorders');
+Route::get('orderdetail/{id}', [App\Http\Controllers\OrderDetailController::class,'orderdetail'] )->name('orderdetail');

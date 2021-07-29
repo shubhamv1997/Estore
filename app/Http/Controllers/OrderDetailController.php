@@ -97,4 +97,54 @@ class OrderDetailController extends Controller
         // return view('admin/vieworder.allorder',compact('u_orders','retatiler'));
 
     }
+
+    public function myorders(Request $request){
+
+        if(Auth::id()){
+            $menstype="Mens";
+            $womenstype="Womens";
+            $kidsstype="Kids";
+            $submen = Subcategory::where('type', $menstype)
+            ->get();
+            $subwomen = Subcategory::where('type', $womenstype)
+            ->get();
+            $subkids = Subcategory::where('type', $kidsstype)
+            ->get();
+
+            $orders = OrderDetail::select()
+            ->where('user_id',Auth::id())
+            ->orderby('id','DESC')->get();
+            return view('user.orders.myorders',compact('orders','submen','subwomen','subkids'));
+
+        }else{
+            return redirect()->route('userlogin');
+        }
+    }
+    public function orderdetail(Request $request,$id){
+
+        if(Auth::id()){
+            $menstype="Mens";
+            $womenstype="Womens";
+            $kidsstype="Kids";
+            $submen = Subcategory::where('type', $menstype)
+            ->get();
+            $subwomen = Subcategory::where('type', $womenstype)
+            ->get();
+            $subkids = Subcategory::where('type', $kidsstype)
+            ->get();
+
+            $orders = OrderDetail::select()
+            ->join('users','users.id','=','order_details.user_id')
+            // ->join('products','products.id','=','order_details.user_id')
+            ->select('order_details.*','users.name','users.email')
+            ->where('user_id',Auth::id())
+            ->where('order_details.id',$id)
+            ->orderby('order_details.id')->first();
+            return view('user.orders.orderdetail',compact('orders','submen','subwomen','subkids'));
+
+        }else{
+            return redirect()->route('userlogin');
+        }
+    }
 }
+

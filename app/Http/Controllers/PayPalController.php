@@ -48,11 +48,11 @@ class PayPalController extends Controller
     {
         // dd('Your payment has been declend. The payment cancelation page goes here!');
         OrderDetail::where('id', $id)
-        ->update(['status' => 'paymentfailed']);
+        ->update(['status' => 'Payment Failed']);
         $request->session()->forget('orderid');
         $request->session()->forget('cartdetail');
+        return redirect('myorders');
 
-        dd('Order Status is Canacle Updated');
     }
   
     public function paymentSuccess($id,Request $request)
@@ -62,11 +62,11 @@ class PayPalController extends Controller
   
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
             OrderDetail::where('id', $id)
-            ->update(['status' => 'paymentsuccess',"is_order_paid"=>1]);
+            ->update(['status' => 'Paid',"is_order_paid"=>1]);
             $request->session()->forget('orderid');
             $request->session()->forget('cartdetail');
+            return redirect('myorders');
 
-            dd('Order Status is Paid');
         }
   
         dd('Error occured!');

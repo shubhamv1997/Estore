@@ -152,6 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									@if (Route::has('register'))
 									@endif
                                     @else
+									<li><a href="{{ route('myorders') }}">View Order</a></li>
 
 									<li><a  onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -164,7 +165,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         @csrf
                                     </form>
 									</a></li>
-									<li><a href="{{ route('registercreate') }}">View Order</a></li>
 									
                                        @endguest     
 									<li><a href="#">Contact</a></li>
