@@ -29,8 +29,9 @@
 						<h5>profile information</h5>
 						
 							@csrf	
-							<input type="text" name="first_name" placeholder="First Name..." style="color:black" value="{{ $user->first_name}}" required=" " >
-							<input type="text" name="last_name"  placeholder="Last Name..." required=" " style="color:black" value="{{ $user->last_name}}" >
+							<input type="text" name="first_name" placeholder="First Name..." style="color:black" value="{{ $user->first_name}}" required=" " />
+                    <br/>
+                            <input type="text" name="last_name"  placeholder="Last Name..." required=" " style="color:black" value="{{ $user->last_name}}" >
 							<br/>
 							<input type="text" name="mobile_number" placeholder="Mobile No...." required=" " style="color:black" value="{{ $user->mobile_number}}" >
 							<br/>
@@ -52,27 +53,27 @@
 						
 					</div>					
 				</div>
-				<div class="col-md-6" style="padding:20px">
+				<div class="col-md-6" style="padding:0px">
 					<h3>Final Product Confirmation</h3>
                     @php $total = 0; $i=1; @endphp
                     @if(session('cartdetail'))
                         @foreach(session('cartdetail') as $id => $details)
                             @php $total += $details['price'] * $details['quantity'] @endphp
-                            <div class="row border border-black" style="padding:50px; 0px" >
-                                <div class="col-md-2" style="line-height:100px; ">
+                            <div class="row border border-black" style="padding:30px; 0px" >
+                                <div class="col-md-2" style="line-height:50px; ">
                                     {{ $i }} @php $i++; @endphp
                                 </div>
-                                <div class="col-md-3" style="line-height:100px; ">
+                                <div class="col-md-3" style="line-height:50px; ">
                                     {{ $details['name'] }}
                                 </div>
-                                <div class="col-md-3" style="line-height:100px; ">
+                                <div class="col-md-3" style="line-height:50px; ">
                                     <img src="{{ URL::to('/')}}/productpics/{{ $details['image']}}"
-                                    class="img img-responsive" style="height:100px;width:100px"/>
+                                    class="img img-responsive" style="height:50px;width:50px"/>
                                 </div>
-                                <div class="col-md-2" style="line-height:100px;">
+                                <div class="col-md-2" style="line-height:50px;">
                                     ${{ $details['price'] }}
                                 </div>
-                                <div class="col-md-2" style="line-height:100px;">
+                                <div class="col-md-2" style="line-height:50px;">
                                     <strong>${{ $details['price'] * $details['quantity'] }}</strong>
                                 </div>                                
                             </div>

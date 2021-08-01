@@ -48,13 +48,105 @@
                                     <strong style="padding:5px; margin:0px"class="text-center bg-info"> Payment failed</strong>
                                     @endif
                                 </td></tr>
+                                <tr><th>Rating:</th><td style="font-size:16px"> 
+                                    @if($orders->is_order_complete==1&& $orders->is_order_reviewed==0)
+                                    <button  data-toggle="modal" data-target="#myModal"  style="padding:5px; margin:0px"class="btn btn-success text-center bg-success"> Rate Order</button>
+                                    
+                                    @elseif($orders->is_order_complete==1 && $orders->is_order_reviewed==1)
+                                    <button  data-toggle="modal" data-target="#reviewModal" style="padding:5px; margin:0px"class="btn btn-success text-center bg-success"> Order Already Reviwed</button>
+                                    
+                                    @else
+                                    <button style="padding:5px; margin:0px"class=" btn btn-info text-center bg-info">Not Allowed</button >
+                                    @endif
+                                    
+                                    <div id="reviewModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog modal-sm">
+                                    
+                                        <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Rate the Order</h4>
+                                                </div>
+                                                <div class="modal-body text-left">
+                                                    <b>Total Rating Given :</b><br/>
+                                                    {{$orders->user_star}}/5<br/>
+                                                    <b>User Comments</b><br/>
+                                                    {{$orders->user_review}}
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            
+                                <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog modal-sm">
+                                  
+                                      <!-- Modal content-->
+                                      <form action="{{route('saveorderrating')}}" method="post">
+                                        @csrf
+                                        <div class="modal-content">]
+                                            <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Rate the Order</h4>
+                                            </div>
+                                            <div class="modal-body text-left">
+                                                Total Rating Given :<br/>
+                                                <select class="form-control" name="user_star">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select><br/>
+                                                <input type="hidden" name="id" value="{{$orders->id}}"/>
+                                                User Comments<br/>
+                                                    <textarea  class="form-control"name="user_review"></textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="submit" class="btn btn-default" >Save Rating</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </tr>
                                 <tr><th>Current Status: </th><td style="font-size:16px"> {{$orders->status}}</td></tr>
                                 <tr><th>Is Order Shipped:</th><td style="font-size:16px"> 
                                     @if($orders->is_order_shipped==1)
-                                    <strong style="padding:5px; margin:0px"class="text-center bg-success"> Order Shipped</strong>
+                                    <strong data-toggle="modal" data-target="#shipdetail" style="padding:5px; margin:0px"class="text-center bg-success"> Order Shipped</strong>
                                     @else
                                     <strong style="padding:5px; margin:0px"class="text-center bg-info"> Not Shipped</strong>
                                     @endif
+                                    
+                                    <div id="shipdetail" class="modal fade" role="dialog">
+                                        <div class="modal-dialog modal-sm">
+                                    
+                                        <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Ship Detail</h4>
+                                                </div>
+                                                <div class="modal-body text-left">
+                                                    <b>Shipping Companu</b><br/>
+                                                    {{$orders->shipping_company}}<br/>
+                                                    <b>Tracking</b><br/>
+                                                    {{$orders->tracking_id}}<br/>
+                                                    <b> Link</b>
+                                                    <br/>
+                                                    {{$orders->link}}
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td></tr>
                                 <tr><th> Local Pickup:</th><td style="font-size:16px"> 
                                     @if($orders->local_pickup==1)
@@ -95,9 +187,14 @@
                                         $retailerdetail = App\Models\User::where('id',$value->retailerid)->first();
                                         // echo json_encode($productdetail);
                                     @endphp
-                                    <td><img src="{{ URL::to('/')}}/productpics/{{ $productdetail->pics}}"
+                                    <td>
+                                        @if(isset($productdetail) && isset($productdetail->pics) && $productdetail->pics!="")
+                                        <img src="{{ URL::to('/')}}/productpics/{{ $productdetail->pics}}"
                                         class="img img-responsive" style="height:100px;width:100px"/>
-                                        </td>
+                                        @else
+                                            No Image
+                                        @endif
+                                    </td>
                                     <td>{{$retailerdetail->name}}</td>
                                     <td>{{$value->price}}</td>
                                 </tr>

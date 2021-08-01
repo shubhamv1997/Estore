@@ -14,6 +14,7 @@ use App\Models\UsersOrder;
 use Auth;
 use DB;
 use App\Models\User;
+use App\Http\Controllers\Redirect;
 
 class OrderDetailController extends Controller
 {
@@ -146,5 +147,139 @@ class OrderDetailController extends Controller
             return redirect()->route('userlogin');
         }
     }
+    public function adminorderdetail(Request $request,$id){
+
+       
+            $orders = OrderDetail::select()
+            ->join('users','users.id','=','order_details.user_id')
+            // ->join('products','products.id','=','order_details.user_id')
+            ->select('order_details.*','users.name','users.email')
+            ->where('order_details.id',$id)
+            ->orderby('order_details.id')->first();
+            return view('admin.order.adminorderdetail',compact('orders'));
+
+    }
+    
+    public function reatilerorderdetail(Request $request,$id){
+
+        if(Auth::id()){
+
+            // $orders = UsersOrder::select()
+            // ->join('order_details.name','user_orders.user_id','user_orders.product_id','user_orders.retailer_id','user_orders.quantity','user_orders.amount','user_orders.order_date','user_orders.status')
+            // ->join('order_details','order_details.id','=','user_oders.order_id')
+            // ->join('users','users.id','=','user_orders.retailer_id')
+            // ->where('order_details.id',$id)
+            // ->first();
+            
+            $orders = OrderDetail::select()
+            ->join('users','users.id','=','order_details.user_id')
+            // ->join('products','products.id','=','order_details.user_id')
+            ->select('order_details.*','users.name','users.email')
+            ->where('order_details.id',$id)
+            ->orderby('order_details.id')->first();
+            // print_r($orders);die();
+            return view('retailer.vieworder.reatilerorderdetail',compact('orders'));
+
+        }else{
+            return redirect()->route('userlogin');
+        }
+    }
+    public function saveorderrating(Request $request){
+
+        if(Auth::id()){
+            $menstype="Mens";
+            $womenstype="Womens";
+            $kidsstype="Kids";
+            $submen = Subcategory::where('type', $menstype)
+            ->get();
+            $subwomen = Subcategory::where('type', $womenstype)
+            ->get();
+            $subkids = Subcategory::where('type', $kidsstype)
+            ->get();
+
+            $update=[
+                'is_order_reviewed'=>1,
+                'user_review'=>$request->user_review,
+                'user_star'=>$request->user_star,
+                'status'=>'Order Reviewed'
+
+            ];
+           $updateorders = OrderDetail::where('id', $request->id)
+            ->where('user_id',Auth::id())        
+           ->update($update);
+           $orders = OrderDetail::select()
+           ->where('user_id',Auth::id())
+           ->orderby('id','DESC')->get();
+           return view('user.orders.myorders',compact('orders','submen','subwomen','subkids'));
+
+
+        }else{
+            return redirect()->route('userlogin');
+        }
+    }
+    
+    public function saveshippingdetail(Request $request){
+
+        if(Auth::id()){
+
+            $update=[
+                'is_order_shipped'=>1,
+                'shipping_company'=>$request->shipping_company,
+                'tracking_id'=>$request->tracking_id,
+                'link'=>$request->link,
+                'status'=>'Order Shipped'
+            ];
+           $updateorders = OrderDetail::where('id', $request->id)   
+           ->update($update);
+
+
+           return redirect('retailer/vieworder/retailerordershow');
+
+
+        }else{
+            return redirect()->route('userlogin');
+        }
+    }
+    public function markordercomplete(Request $request){
+
+        if(Auth::id()){
+
+            $update=[
+                'status'=>'Completed',
+            ];
+           $updateorders = UsersOrder::where('order_id', $request->id) 
+           ->where('retailer_id',Auth::id())  
+           ->update($update);
+
+
+           return redirect('retailer/vieworder/retailerordershow');
+
+
+        }else{
+            return redirect()->route('userlogin');
+        }
+    }
+    public function markordercompletebyadmin(Request $request){
+
+        if(Auth::id()){
+
+            $update=[
+                'status'=>'Completed',
+                'is_order_complete'=>1
+            ];
+           $updateorders = OrderDetail::where('id', $request->id)
+           ->update($update);
+
+
+        //    return redirect('retailer/vieworder/retailerordershow');
+            // return Redirect::back();
+            return back()->withInput();
+
+
+        }else{
+            return redirect()->route('userlogin');
+        }
+    }
+    
 }
 
