@@ -87,7 +87,6 @@
                                   <th>Amount</th>
                                    <th>Order Date</th> 
                                    <th>Status</th>
-                                   <th>Approval</th>
                                    
                              </thead> 
                              <tbody> 

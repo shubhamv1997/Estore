@@ -37,7 +37,7 @@
 				
 			@foreach($product as $p)
 			
-				<div class="col-md-4 top_brand_left-1">
+				<div class="col-md-4 top_brand_left-1" style="margin-bottom:10px;">
 					<div class="hover14 column">
 						<div class="agile_top_brand_left_grid">
 							<div class="agile_top_brand_left_grid_pos">
@@ -49,6 +49,7 @@
 										<div class="snipcart-thumb">
 											<a href="{{ route('showdetails',$p->id)}}"><img class=" img-responsive" style="height:100px"title=" " alt=" " src="{{ URL::to('/')}}/productpics/{{ $p->image_1}}"></a>		
 											<p><b>{{ $p->product_name}}</b></p>
+											
 											<!-- <div class="stars">
 												<i class="fa fa-star blue-star" aria-hidden="true"></i>
 												<i class="fa fa-star blue-star" aria-hidden="true"></i>

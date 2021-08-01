@@ -107,9 +107,27 @@ class ApprovalRetailerController extends Controller
          try{
 
             
+            $type="Retailer";
+            $name=$request->get('first_name').' '.$request->get('last_name');
+         
+            $emailv="NULL";
+            $remember_token="NULL";
+
+           $User= $this->User->create([
+           
+           'name'=>$name,
+           'email'=>$request->get('email'),
+           'type'=>$type,
+           'email_verified'=>$emailv,
+           'password'=>Hash::make($request->get('password')),
+           'remember_token'=>$remember_token
+       ]);
+
 
            $retailer = new Retailer();
-           $retailer->user_id = $id;
+           //$retailer->user_id = $id;
+           
+           $retailer ->user_id = $User->id;
            $retailer->first_name = $request->first_name;
            $retailer->last_name = $request->last_name;
            $retailer->email = $request->email;
@@ -146,21 +164,7 @@ class ApprovalRetailerController extends Controller
            $retailer->save();
 
 
-            $type="Retailer";
-            $name=$request->get('first_name').' '.$request->get('last_name');
-         
-            $emailv="NULL";
-            $remember_token="NULL";
-
-           $User= $this->User->create([
-           
-           'name'=>$name,
-           'email'=>$request->get('email'),
-           'type'=>$type,
-           'email_verified'=>$emailv,
-           'password'=>Hash::make($request->get('password')),
-           'remember_token'=>$remember_token
-       ]);
+            
 
        
        $bank = new Bank();

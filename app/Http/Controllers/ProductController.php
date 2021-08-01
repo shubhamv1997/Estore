@@ -207,12 +207,14 @@ class ProductController extends Controller
        // echo $id;
        
         $products=DB::table('products')
-        ->select('products.*','countries.country_name','cities.city_name','categories.category_name','subcategories.subcategory_name','users.name','product_images.image_1','product_images.image_2','product_images.image_3','product_attributes.att_name1','product_attributes.att_value1','product_attributes.att_name2','product_attributes.att_value2')
+        ->select('products.*','retailers.first_name','countries.country_name','cities.city_name','categories.category_name','subcategories.subcategory_name','users.name','product_images.image_1','product_images.image_2','product_images.image_3','product_attributes.att_name1','product_attributes.att_value1','product_attributes.att_name2','product_attributes.att_value2')
         ->join('countries','countries.id','=','products.country_id')
         ->join('cities','cities.id','=','products.city_id')
         ->join('categories','categories.id','=','products.category_id')
         ->join('subcategories','subcategories.id','=','products.subcategory_id')
         ->join('users','users.id','=','products.retailer_id')
+        ->join('retailers','retailers.id','=','products.retailer_id')
+
         ->join('product_images','product_images.product_id','=','products.id')
         ->join('product_attributes','product_attributes.product_id','=','products.id')
         ->where('products.id', $id)

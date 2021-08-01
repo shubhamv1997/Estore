@@ -308,3 +308,9 @@ Route::get('payment-success/{id}', [App\Http\Controllers\PayPalController::class
 Route::post('saveorderandpay', [App\Http\Controllers\OrderDetailController::class,'saveorderandpay'] )->name('saveorderandpay');
 Route::get('myorders', [App\Http\Controllers\OrderDetailController::class,'myorders'] )->name('myorders');
 Route::get('orderdetail/{id}', [App\Http\Controllers\OrderDetailController::class,'orderdetail'] )->name('orderdetail');
+Route::get('reatilerorderdetail/{id}', [App\Http\Controllers\OrderDetailController::class,'reatilerorderdetail'] )->name('reatilerorderdetail');
+Route::get('adminorderdetail/{id}', [App\Http\Controllers\OrderDetailController::class,'adminorderdetail'] )->name('adminorderdetail');
+Route::post('saveorderrating', [App\Http\Controllers\OrderDetailController::class,'saveorderrating'] )->name('saveorderrating');
+Route::post('saveshippingdetail', [App\Http\Controllers\OrderDetailController::class,'saveshippingdetail'] )->name('saveshippingdetail');
+Route::post('markordercomplete', [App\Http\Controllers\OrderDetailController::class,'markordercomplete'] )->name('markordercomplete');
+Route::post('markordercompletebyadmin', [App\Http\Controllers\OrderDetailController::class,'markordercompletebyadmin'] )->name('markordercompletebyadmin');

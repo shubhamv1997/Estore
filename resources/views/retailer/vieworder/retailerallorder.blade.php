@@ -27,7 +27,7 @@
                                   <th>Amount</th>
                                    <th>Order Date</th> 
                                    <th>Status</th>
-                                   <th>Approval</th>
+                                   <th>Detail</th>
                                    
                              </thead> 
                              <tbody> 
@@ -53,9 +53,10 @@
                                 <td>{{ $u->status}}</td>
                                 @if($u->status=='Pending')
 
-                                <td><a href="{{route('orderapp',$u->id)}}"><button class="btn btn-warning">Approval</a></button></td>
+                                {{-- <td><a href="{{route('orderapp',$u->id)}}"><button class="btn btn-warning">Approval</a></button></td> --}}
+                                <td><a href="{{route('reatilerorderdetail',$u->order_id)}}" class="btn btn-warning">Detail</a></td>
                               @else
-                              <td>Allready Approval</td>
+                              <td>Allready Approval Or <a href="{{route('reatilerorderdetail',$u->order_id)}}" class="btn btn-warning">Show Review</a></td>
                               @endif
                                 </tr>
                                 @endforeach   

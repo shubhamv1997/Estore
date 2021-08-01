@@ -8,6 +8,7 @@ use Auth;
 use DB;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\OrderDetail;
 
 use App\Models\UsersOrder;
 
@@ -26,22 +27,9 @@ class UserorderController extends Controller
      */
     public function index()
     {
-         $u_orders=DB::table('users_orders')
-        ->select('users_orders.*','users.name','users.email','products.product_name')
-        ->join('users','users.id','=','users_orders.user_id')
-        ->join('products','products.id','=','users_orders.product_id')
-        ->orderBy('id', 'DESC')->get();
-        $retatiler = array();
-        foreach ($u_orders as $key => $value) {
-            $retailer = DB::table('retailers')
-            ->select('retailers.*')
-            ->join('users','users.id','=','retailers.user_id')
-            ->first();       
-            array_push($retatiler,$retailer);     
-        }
-        // dd($retatiler);
-        // die();
-         return view('admin/vieworder.allorder',compact('u_orders','retatiler'));
+        $orders = OrderDetail::select()
+        ->orderby('id','DESC')->get();
+        return view('admin/vieworder.allorder',compact('orders'));
 
     }
 

@@ -125,9 +125,17 @@ class ShowProductController extends Controller
        ->select('product_attributes.*')->where('product_id',$id)
        ->get();
         
+        $r= DB::table('products')->select('retailer_id')->where('id',$id)
+        ->first();
+        
+        $r_detail= DB::table('retailers')
+        ->select('first_name','profile_pic','mobile_number','business_phone','last_name','business_name','business_address')
+        ->where('user_id',$r->retailer_id)
+        ->get();
 
+ 
        // $product=Product::where('subcategory_id',$id)->get();
-        return view('user/showproduct.detail',compact('product','product1','product2','submen','subwomen','subkids'));
+        return view('user/showproduct.detail',compact('product','r_detail','product1','product2','submen','subwomen','subkids'));
        
 
        
