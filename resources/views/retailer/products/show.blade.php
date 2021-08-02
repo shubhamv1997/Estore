@@ -10,7 +10,7 @@
 					
 					
 					<div class="table-responsive bs-example widget-shadow">
-						<h4>Show  Product Informa:</h4>
+						<h4>Show  Product Information:</h4>
                        
                         <table class="table table-bordered"> <thead> 
                             

@@ -35,13 +35,13 @@
 						<div style="width:100%" class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 							<form action="{{ route('login') }}" method="post">
 								@csrf	
-								<input type="email" name="email" placeholder="Email Address" required=" " >
+								<input type="email" name="email" placeholder="Email Address" required=" " style="color:black" >
 									@error('email')
 								<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
 								</span>
 								@enderror
-								<input type="password" name="password" placeholder="Password" required=" " >
+								<input type="password" name="password" placeholder="Password" required=" " style="color:black">
 								@error('password')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
@@ -68,18 +68,18 @@
 						<h5>profile information</h5>
 						<form action="{{ route('registerstore')}}" method="post">
 							@csrf	
-							<input type="text" name="first_name" placeholder="First Name..." required=" " >
-							<input type="text" name="last_name"  placeholder="Last Name..." required=" " >
+							<input type="text" name="first_name" style="color:black" placeholder="First Name..." required=" " >
+							<input type="text" name="last_name" style="color:black" placeholder="Last Name..." required=" " >
 							<br/>
-							<input type="text" name="mobile_number" placeholder="Mobile No...." required=" " >
+							<input type="text" name="mobile_number" style="color:black" placeholder="Mobile No...." required=" " >
 							<br/>
 							<textarea  name="address" placeholder="Address..." required=" " 
-							style="outline: none;border:1px solid #DBDBDB;padding: 10px 10px 10px 10px;font-size: 14px;color: #999;display: block;width: 100%;" ></textarea>
+							style="outline: none;border:1px solid #DBDBDB;padding: 10px 10px 10px 10px;font-size: 14px;color:black;display: block;width: 100%;" ></textarea>
 							
 						
 							<h6>Login information</h6>
-							<input type="email" name="email" placeholder="Email Address" required=" " >
-							<input type="password" name="password" placeholder="Password" required=" " >
+							<input type="email" name="email" placeholder="Email Address" required=" " style="color:black">
+							<input type="password" name="password" placeholder="Password" required=" " style="color:black">
 							<input type="hidden" name="status" value="0"/>
 							<input type="submit" value="Register">
 						</form>

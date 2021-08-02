@@ -143,6 +143,17 @@ Route::get('retailer/product/productverify/edit/{id}',[App\Http\Controllers\Appr
 
 
 
+
+##################################################################
+###############                           ########################
+############### Admin Contact Route       ########################
+###############                           ########################
+##################################################################
+
+Route::get('admin/contact', [App\Http\Controllers\ShowContactController::class,'index'])->name('contactshow');
+
+
+
 ##################################################################
 ###############                           ########################
 ############### Admin View Order Route    ########################
@@ -150,6 +161,10 @@ Route::get('retailer/product/productverify/edit/{id}',[App\Http\Controllers\Appr
 ##################################################################
 
 Route::get('admin/vieworder/ordershow', [App\Http\Controllers\UserorderController::class,'index'])->name('ordershow');
+Route::get('admin/vieworder/pendingpaymentordershow', [App\Http\Controllers\UserorderController::class,'create'])->name('pendingpaymentordershow');
+Route::get('admin/vieworder/paidorder', [App\Http\Controllers\UserorderController::class,'paid'])->name('paidorder');
+Route::get('admin/vieworder/revieworder', [App\Http\Controllers\UserorderController::class,'review'])->name('revieworder');
+Route::get('admin/vieworder/completeorder', [App\Http\Controllers\UserorderController::class,'complete'])->name('completeorder');
 
 
 Route::get('admin/vieworder/orderapprovel/edit/{id}',[App\Http\Controllers\UserorderController::class,'edit'])->name('orderapp');
@@ -247,6 +262,7 @@ Route::get('retailer/vieworder/orderapprovel/edit/{id}',[App\Http\Controllers\Re
 ##################################################################
 
 Route::get('/', [App\Http\Controllers\UserHomeController::class, 'index'])->name('userhome');
+Route::get('/userhome', [App\Http\Controllers\UserHomeController::class, 'index'])->name('userhome');
 
 
 ##################################################################
@@ -265,12 +281,13 @@ Route::post('updateCart', [App\Http\Controllers\ShowProductController::class, 'u
 Route::get('removefromcart/{id}', [App\Http\Controllers\ShowProductController::class, 'remove'])->name('removefromcart');
 ##################################################################
 ###############                           ########################
-############### User Show Women Product Page Route      ################
+############### User Show Women and Kids Product Page Route      ################
 ###############                           ########################
 ##################################################################
 
 
 Route::get('user/showwomenproducts/{id}', [App\Http\Controllers\ShowWomenProductController::class,'show'])->name('showwomenproducts');
+Route::get('user/showkidsproducts/{id}', [App\Http\Controllers\ShowKidsProductController::class,'show'])->name('showkidsproducts');
 
 
 ##################################################################
@@ -292,7 +309,7 @@ Route::post('user/userregister', [App\Http\Controllers\UserRegisterController::c
 
 
 Route::get('user/userlogin',[App\Http\Controllers\UserRegisterController::class,'index'])->name('userlogin');
-Route::get('/userhome', [App\Http\Controllers\ShowProductController::class,'cart2'])->name('rhome');
+Route::get('/userhomes', [App\Http\Controllers\ShowProductController::class,'cart2'])->name('rhome');
 
 Route::get('user/confirmaddress',[App\Http\Controllers\UserRegisterController::class,'confirmaddress'])->name('confirmaddress');
 
@@ -314,3 +331,16 @@ Route::post('saveorderrating', [App\Http\Controllers\OrderDetailController::clas
 Route::post('saveshippingdetail', [App\Http\Controllers\OrderDetailController::class,'saveshippingdetail'] )->name('saveshippingdetail');
 Route::post('markordercomplete', [App\Http\Controllers\OrderDetailController::class,'markordercomplete'] )->name('markordercomplete');
 Route::post('markordercompletebyadmin', [App\Http\Controllers\OrderDetailController::class,'markordercompletebyadmin'] )->name('markordercompletebyadmin');
+
+
+
+
+##################################################################
+###############                           ########################
+############### Contact Page Route      ########################
+###############                           ########################
+##################################################################
+
+
+Route::get('user/contact', [App\Http\Controllers\ContactController::class,'create'])->name('contactcreate');
+Route::post('user/contact', [App\Http\Controllers\ContactController::class,'store'])->name('contactrstore');

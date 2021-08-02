@@ -40,6 +40,12 @@ class UserorderController extends Controller
      */
     public function create()
     {
+
+        $orders = OrderDetail::select()
+        ->where('status','Payment Pending')
+        ->orderby('id','DESC')->get();
+        return view('admin/vieworder.paymentpendingorder',compact('orders'));
+
        
         
     }
@@ -105,5 +111,45 @@ class UserorderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function paid()
+    {
+
+        $orders = OrderDetail::select()
+        ->where('status','Paid')
+        ->orderby('id','DESC')->get();
+        return view('admin/vieworder.paidorder',compact('orders'));
+
+       
+        
+    }
+
+    
+    public function review()
+    {
+
+        $orders = OrderDetail::select()
+        ->where('status','Order Reviewed')
+        ->orderby('id','DESC')->get();
+        return view('admin/vieworder.revieworder',compact('orders'));
+
+       
+        
+    }
+
+
+    
+    public function complete()
+    {
+
+        $orders = OrderDetail::select()
+        ->where('is_order_complete','1')
+        ->orderby('id','DESC')->get();
+        return view('admin/vieworder.completeorder',compact('orders'));
+
+       
+        
     }
 }

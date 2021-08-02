@@ -43,7 +43,7 @@
 							<div class="agile_top_brand_left_grid_pos">
 								<!-- <img src="{{ URL::to('/')}}/productpics/{{ $p->image_1}}" alt=" " class="img-responsive"> -->
 							</div>
-							<div class="agile_top_brand_left_grid1">
+							<div class="agile_top_brand_left_grid1" style="height:300px">
 								<figure>
 									<div class="snipcart-item block">
 										<div class="snipcart-thumb">

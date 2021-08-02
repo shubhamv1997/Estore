@@ -35,10 +35,14 @@
 							<br/>
 							<input type="text" name="mobile_number" placeholder="Mobile No...." required=" " style="color:black" value="{{ $user->mobile_number}}" >
 							<br/>
-                            <input type="text" name="address"  required=" " style="color:black"  value="{{ trim($user->address)}}" >
+                            <input type="text" name="address" id="address" required=" " style="color:black"  value="{{ trim($user->address)}}" >
+							<br/>
+                            
+                            <input type="radio" name="same" id="same" onclick="sameaddress()" style="color:black" > Same As Above Address
+                            <input type="radio" name="same" id="back" onclick="backaddress()" style="color:black" > Not Same As Above Address
 							<br/>
                             Shipping Address
-                            <textarea type="text" class="form-control"name="billing_address"placeholder="Billing Address" required=" " style="color:black" >
+                            <textarea type="text" class="form-control" id="billing_address" name="billing_address"placeholder="Billing Address" required=" " style="color:black" >
                             </textarea>
 							<br/>
                             <input type="text" name="city" required=" " placeholder="City" style="color:black" >
@@ -100,4 +104,17 @@
 </div>
 <!-- //login -->
 
+<script>
+function sameaddress()
+{
+    //alert();
+   var a= document.getElementById("address").value;
+   //alert(a);
+   document.getElementById("billing_address").value=a;
+}   
+function backaddress()
+{
+    document.getElementById("billing_address").value="";
+}  
+</script>
 @endsection

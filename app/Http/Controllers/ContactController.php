@@ -3,16 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Subcategory;
+use App\Models\Contact;
+use Auth;
 use DB;
-class UserHomeController extends Controller
+use App\Models\User;
+
+class ContactController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         $menstype="Mens";
         $womenstype="Womens";
@@ -24,39 +40,8 @@ class UserHomeController extends Controller
         $subkids = Subcategory::where('type', $kidsstype)
         ->get();
 
-        //$suball= Subcategory::all();
-
-        
-       $status='Approval By Admin';
-        
-       $product=DB::table('products')
-        ->select('products.*','countries.country_name','cities.city_name','categories.category_name','subcategories.subcategory_name','users.name','product_images.image_1','product_images.image_2','product_images.image_3','product_attributes.att_name1','product_attributes.att_value1','product_attributes.att_name2','product_attributes.att_value2')
-        ->join('countries','countries.id','=','products.country_id')
-        ->join('cities','cities.id','=','products.city_id')
-        ->join('categories','categories.id','=','products.category_id')
-        ->join('subcategories','subcategories.id','=','products.subcategory_id')
-        ->join('users','users.id','=','products.retailer_id')
-        ->join('product_images','product_images.product_id','=','products.id')
-        ->join('product_attributes','product_attributes.product_id','=','products.id')
-        ->where('products.category_id',2)
-         ->where('products.status',$status)
-        ->orderBy('id', 'DESC')
-        ->limit(4)
-        ->get();
-
-
-        return view('userhome',compact('submen','subwomen','subkids','product'));
-       // return view('userhome');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('user/contact.create',compact('submen','subwomen','subkids'));
+   
     }
 
     /**
@@ -67,7 +52,29 @@ class UserHomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'message'=>'required'
+
+
+        ]);
+
+        $form_data = array(
+            
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message
+
+
+        );
+
+        Contact::create($form_data);
+
+       return redirect()->back()->with('Done','Message Send Successfully');
+
+
+
     }
 
     /**

@@ -204,7 +204,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-       // echo $id;
+        echo $id;
        
         $products=DB::table('products')
         ->select('products.*','retailers.first_name','countries.country_name','cities.city_name','categories.category_name','subcategories.subcategory_name','users.name','product_images.image_1','product_images.image_2','product_images.image_3','product_attributes.att_name1','product_attributes.att_value1','product_attributes.att_name2','product_attributes.att_value2')
@@ -220,6 +220,8 @@ class ProductController extends Controller
         ->where('products.id', $id)
          ->get();
          // echo $products;
+         //print_r($products);
+         //die();
         return view('retailer/products.show',compact('products'));
     
     }
@@ -296,7 +298,6 @@ class ProductController extends Controller
         $products->tax=$request->get('tax');
         $products->return_policy=$request->get('return_policy');
         $products->specification=$request->get('specification');
-
 
         $products->save();
 

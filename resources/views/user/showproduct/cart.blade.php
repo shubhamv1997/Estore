@@ -129,7 +129,7 @@
 			
             <div class="col-md-3 top_brand_left-1">
                 <div class="hover14 column">
-                    <div class="agile_top_brand_left_grid">
+                    <div class="agile_top_brand_left_grid" style="margin-bottom:10px;">
                         <div class="agile_top_brand_left_grid_pos">
                             <!-- <img src="{{ URL::to('/')}}/productpics/{{ $p->image_1}}" alt=" " class="img-responsive"> -->
                         </div>

@@ -63,7 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="{{ route('home') }}">E-Commerce</a></h1>
+				<h1><a href="{{ route('userhome') }}">E-Commerce</a></h1>
 			</div>
 			<div class="product_list_header">
 				<a class="btn btn-warning" href="{{ route('retailerlogin')}}">Retailer Login</a>				
@@ -88,8 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="{{ route('home') }}" class="act">Home</a></li>	
-									<li><a href="about.html">About</a></li>
+									<li class="active"><a href="{{ route('userhome') }}" class="act">Home</a></li>	
 									<!-- Mega Menu -->
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Men's<b class="caret"></b></a>
@@ -136,7 +135,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													<ul class="multi-column-dropdown">
 														<h6>All Kids's</h6>
 														@foreach($subkids as $k)
-                                                    <li><a href="">{{ $k->subcategory_name}}</a></li>
+                                                    <li><a href="{{ route('showkidsproducts',$k->id)}}">{{ $k->subcategory_name}}</a></li>
                                                         @endforeach
                     
 														</ul>
@@ -146,6 +145,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</ul>
 									</li>
 									@guest
+									<li><a href="{{ route('contactcreate') }}">Contact</a></li>
+
 									<li><a href="{{ route('userlogin')}}">Login</a></li>
 									
 									<li><a href="{{ route('registercreate') }}">Register</a></li>
@@ -167,8 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</a></li>
 									
                                        @endguest     
-									<li><a href="#">Contact</a></li>
-
+									
 
 									
 								</ul>
@@ -223,35 +223,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>Contact</h3>
 					
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block, <span>New York City.</span></li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block, <span>London City.</span></li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>info@example.com</li>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 567</li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
-					<h3>Information</h3>
+					<h3>important Links</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="">Contact Us</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ url('userhome')}}">Home</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ url('user/contact')}}">Contact Us</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ url('user/userregister')}}">Register</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ url('user/userlogin')}}">Login</a></li>
 						
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
-					<h3>Category</h3>
+					<h3>Information</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Men's</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Women's</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Kid's</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i>If You want to sell your products online.
+						</li>
+							<li><i class="fa fa-arrow-right" aria-hidden="true"></i>To Become a part of our website as a Vendor the send message</li>
 						</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Store</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">My Cart</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Vendor Login</a></li>
+						
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ route('cart2') }}">My Cart</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{ route('retailerlogin') }}">Vendor Login</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Create Account Vendor</a></li>
 					</ul>
 				</div>

@@ -26,9 +26,9 @@
 				<div class="categories">
 					<h2>Categories</h2>
 					<ul class="cate">
-						@foreach($subwomen as $sw)
+						@foreach($subkids as $sw)
 			
-						<li><a href="{{ route('showwomenproducts',$sw->id)}}"><i class="fa fa-arrow-right" aria-hidden="true"></i>{{$sw->subcategory_name}}</a></li>
+						<li><a href="{{ route('showkidsproducts',$sw->id)}}"><i class="fa fa-arrow-right" aria-hidden="true"></i>{{$sw->subcategory_name}}</a></li>
 						@endforeach	
 						
 				</div>																																												

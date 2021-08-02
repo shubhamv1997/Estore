@@ -156,20 +156,32 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
                             
 
+
+
+
+                            
                             <li class="treeview">
-                                <a href="{{ route('ordershow') }}">
-                                <i class="fa fa-table"></i>
-                                <span>All Order</span>
+                                <a href="#">
+                                    <i class="fa fa-table"></i> <span>Orders</span>
+                                    <i class="fa fa-angle-left pull-right"></i>
                                 </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="{{ route('ordershow') }}"><i class="fa fa-angle-right"></i> All Order</a></li>
+                                    <li><a href="{{ route('pendingpaymentordershow') }}"><i class="fa fa-angle-right"></i> Pending Payment Order</a></li>
+                                    <li><a href="{{ route('paidorder') }}"><i class="fa fa-angle-right"></i> Paid Payment Order</a></li>
+                                    <li><a href="{{ route('revieworder') }}"><i class="fa fa-angle-right"></i> Reviewed Order</a></li>
+                                    <li><a href="{{ route('completeorder') }}"><i class="fa fa-angle-right"></i> Completed Order</a></li>
+
+                                </ul>
                             </li>
-                           <!-- <li class="treeview">
-                                <a href="">
+                           <li class="treeview">
+                                <a href="{{ route('contactshow')}}">
                                 <i class="fa fa-table"></i>
-                                <span>Show Dispute</span>
+                                <span>Show Message</span>
                                 </a>
                             </li>
 
-                            <li class="treeview">
+                            <!--<li class="treeview">
                                 <a href="">
                                 <i class="fa fa-table"></i>
                                 <span>Show Feedback</span>
