@@ -44,9 +44,10 @@
                                 <td>{{ $i}}</td>
                                 <td>{{ $value->id}}</td>
                                 <td>
+                                    @php $totalproducts=0; $totalprice=0; @endphp
+
                                     <table class="table table-bordered text-left" style="margin:0px;padding:0px;">
                                         @foreach(json_decode($value->products_detail) as $pkey=>$pvalue)
-                                            @php $totalproducts=0; $totalprice=0; @endphp
 
                                             @php $totalproducts +=1 @endphp
 
@@ -59,7 +60,7 @@
                                         @endforeach
                                     </table>
                                 </td>
-                                <td>{{ $totalproducts}}</td>
+                                <td>{{ $totalproducts}}+Tax(13%)</td>
                                 <td>{{ $totalprice}}</td>
                                 <td>
                                     @if($value->is_order_paid==1)

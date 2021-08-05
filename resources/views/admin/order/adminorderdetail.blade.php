@@ -165,11 +165,45 @@
                         @php $i++; @endphp
                             
                         @endforeach
+
+
                         <tr>
                             <td colspan="2"></td>
                             <td colspan="2">Products- {{$totalproducts}} (Qty: {{$totalqty}})</td>
                             <td colspan="2"></td>
-                        <td class="bg-success">{{$totalprice}}</td>
+                        <td class="bg-success"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                <tr>
+                                    <td colspan="6">
+                                        <table class=" table table-bordered table-responsive">
+                                            <tr>
+                                                <th style="text-align:right">Product Amount</th>
+                                                <td>{{$totalprice}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th style="text-align:right">Applicable Tax(13%)</th>
+                                                <td>
+                                                    @php
+                                                        $tax = $totalprice*13/100;
+                                                        $totalprice  = $totalprice+$tax;
+                                                        echo $tax;
+                                                    @endphp
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="text-align:right">Final Amount</th>
+                                                <td>
+                                                    {{$totalprice}}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </td>
+                        </tr>
+                        
                         <tr>
                             <td colspan="2"></td>
                             <td colspan="3"></td>
@@ -204,7 +238,11 @@
                                 @endif
                             </td>
                         </tr>
+
+                        
                         </tr>
+
+                        
                     </table>
                     </div>
                     <div class="clearfix"></div>

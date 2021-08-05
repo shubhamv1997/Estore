@@ -19,14 +19,15 @@ class PayPalController extends Controller
                 $x  = Array(
                 
                     'name' => $details['name'],
-                    'price' => $details['price'],
+                    'price' => ($details['price']*(13/100))+$details['price'],
                     'desc'  => $details['name'],
                     'qty' => $details['quantity']
                 );
                 array_push($product['items'],$x);
-                $total += $details['price'] * $details['quantity'];
+                $total += (($details['price']*(13/100))+$details['price']) * $details['quantity'];
             }
-            
+            // $tax = $total*13/100+1;
+            // $total  = (int)($total+$tax);
             $orderid = $request->session()->get('orderid');
             $product['invoice_id'] = $orderid;
             $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
@@ -34,12 +35,13 @@ class PayPalController extends Controller
             $product['cancel_url'] = "http://localhost:8000/cancel-payment/{$orderid}";
             // echo route('rhome'); die();
             $product['total'] = $total;
-    
+            
+            // print_r($product);
             $paypalModule = new ExpressCheckout;
-    
             $res = $paypalModule->setExpressCheckout($product);
             $res = $paypalModule->setExpressCheckout($product, true);
-    
+            // print_r($res);
+            // die();
             return redirect($res['paypal_link']);
         }
     }

@@ -65,7 +65,7 @@
                 <div class="col-md-1" style="line-height:100px; border-left:1px solid grey">
                     {{ $i }} @php $i++; @endphp
                 </div>
-                <div class="col-md-2" style="line-height:100px; border-left:1px solid grey">
+                <div class="col-md-2" style="height:100px; border-left:1px solid grey"><br/>
                     {{ $details['name'] }}
                 </div>
                 <div class="col-md-2" style="line-height:100px; border-left:1px solid grey">

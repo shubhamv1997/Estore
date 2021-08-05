@@ -28,6 +28,8 @@ class OrderDetail extends Model
         'is_order_reviewed',
         'user_review',
         'user_star',
-        'order_date'
+        'order_date',
+        'province',
+        'country'
     ];
 }

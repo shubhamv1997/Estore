@@ -49,7 +49,7 @@ class OrderDetailController extends Controller
                 $uorders->product_id = $id;
                 $uorders->Quantity = $cart['quantity'];
                 $uorders->amount = $cart['price'];
-                $uorders->order_date =  Date('d/m/y');
+                $uorders->order_date =  date('Y/m/d');
                 $uorders->status = "Pending";
                 array_push($x,$uorders);
             }
@@ -65,8 +65,11 @@ class OrderDetailController extends Controller
             $product->city = $request->city;
             $product->pincode = $request->pincode;
             $product->retailers = '';
-            $product->order_date=Date('d/m/y');
+            $product->order_date=date('Y/m/d');
             $product->status="Payment Pending";
+            
+            $product->province = $request->province;
+            $product->country = $request->country;
 
             $product->local_pickup = $request->local_pickup;
             $product->products_detail  = \json_encode($products_details);

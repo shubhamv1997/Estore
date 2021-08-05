@@ -44,6 +44,13 @@
                             Shipping Address
                             <textarea type="text" class="form-control" id="billing_address" name="billing_address"placeholder="Billing Address" required=" " style="color:black" >
                             </textarea>
+                            
+                            <br/>
+                            <input type="text" name="country" required=" " placeholder="Country" style="color:black" >
+							
+                            <br/>
+                            <input type="text" name="province" required=" " placeholder="Province" style="color:black" >
+							
 							<br/>
                             <input type="text" name="city" required=" " placeholder="City" style="color:black" >
 							<br/>
@@ -67,7 +74,7 @@
                                 <div class="col-md-2" style="line-height:50px; ">
                                     {{ $i }} @php $i++; @endphp
                                 </div>
-                                <div class="col-md-3" style="line-height:50px; ">
+                                <div class="col-md-3" style="">
                                     {{ $details['name'] }}
                                 </div>
                                 <div class="col-md-3" style="line-height:50px; ">
@@ -85,8 +92,28 @@
                     @endif
                     <div class="row">
                         <div class="col-md-12 text-right">
-                            <br/>
-                            <h3><strong>Total ${{ $total }}</strong></h3>  
+                            <table class=" table table-bordered table-responsive">
+                                <tr>
+                                    <th style="text-align:right">Product Amount</th>
+                                    <td>{{$total}}</td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align:right">Applicable Tax(13%)</th>
+                                    <td>
+                                        @php
+                                            $tax = $total*13/100;
+                                            $total  = $total+$tax;
+                                            echo $tax;
+                                        @endphp
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style="text-align:right">Final Amount</th>
+                                    <td>
+                                        {{$total}}
+                                    </td>
+                                </tr>
+                            </table>
                             <br/>
                             <img src="{{ asset('dist/images/payment.png') }}" class="img-responsive"/> 
                             {{-- <a href="{{ route('make.payment') }}" class="btn btn-info btn-block" style="margin:10px 0px;padding:10px"> --}}
@@ -95,6 +122,7 @@
                             </button>
                             {{-- </a > --}}
                         </div>
+                        
                     </div>
 					
 				</div>
