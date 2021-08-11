@@ -77,7 +77,11 @@ class UserRegisterController extends Controller
             'mobile_number'=>'required',
             'address'=>'required',
             'email'=>'required',
-            'password'=>'required'
+            'password'=>'required',
+            'city'=>'required',
+            'country'=>'required',
+            'postal'=>'required',
+            'province'=>'required'
 
 
         ]);
@@ -93,6 +97,11 @@ class UserRegisterController extends Controller
          $userregister->address = $request->address;
          $userregister->email = $request->email;
          $userregister->password = $request->password;
+         $userregister->city = $request->city;
+         $userregister->country = $request->country;
+         $userregister->postal = $request->postal;
+         
+         $userregister->province = $request->province;
          $status="0";
          $userregister->status = $status;
 
