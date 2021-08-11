@@ -56,7 +56,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <h1><a class="navbar-brand" href="{{ route('home') }}"> E-Commerce<span class="dashboard_text">Shopping Site</span></a></h1>
+                        <h1><a class="navbar-brand" href="{{ route('home') }}">E-mart<span class="dashboard_text">For Apparels</span></a></h1>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="sidebar-menu">
