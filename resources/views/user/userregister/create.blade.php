@@ -65,6 +65,22 @@
 							<br/>
 							<input type="text" name="mobile_number" placeholder="Mobile No...." required=" " style="color:black">
 							<br/>
+							<input type="text" name="mobile_number" placeholder="Mobile No...." required=" " style="color:black">
+							<br/>
+							
+							<input type="text" name="city" placeholder="City..." required=" " style="color:black">
+							<br/>
+							
+							<input type="text" name="province" placeholder="Province...." required=" " style="color:black">
+							<br/>
+							
+							<input type="text" name="country" placeholder="Country...." required=" " style="color:black">
+							<br/>
+							
+							<input type="text" name="postal" placeholder="Postal Code..." required=" " style="color:black">
+							<br/>
+							
+
 							<textarea  name="address" placeholder="Address..." required=" "
 							style="outline: none;border:1px solid #DBDBDB;padding: 10px 10px 10px 10px;font-size: 14px;color: black ;display: block;width: 100%;" ></textarea>
 							

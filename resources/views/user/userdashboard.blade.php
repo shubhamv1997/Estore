@@ -63,7 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="{{ route('userhome') }}">E-Commerce</a></h1>
+				<h1><a href="{{ route('userhome') }}">E-mart for Apparels</a></h1>
 			</div>
 			<div class="product_list_header">
 				<a class="btn btn-warning" href="{{ route('retailerlogin')}}">Retailer Login</a>				
@@ -91,12 +91,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li class="active"><a href="{{ route('userhome') }}" class="act">Home</a></li>	
 									<!-- Mega Menu -->
 									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Men's<b class="caret"></b></a>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Men<b class="caret"></b></a>
 										<ul class="dropdown-menu multi-column columns-3">
 											<div class="row">
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
-														<h6>All Men's Collections</h6>
+														<h6>All Men Collections</h6>
 														
 														@foreach($submen as $m)
                                                     <li><a href="{{ route('showproducts',$m->id)}}">{{ $m->subcategory_name}}</a></li>
@@ -109,12 +109,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</ul>
 									</li>
 									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Women's<b class="caret"></b></a>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Women<b class="caret"></b></a>
 										<ul class="dropdown-menu multi-column columns-3">
 											<div class="row">
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
-														<h6>All Women's Collections</h6>
+														<h6>All Women Collections</h6>
 														
 														@foreach($subwomen as $w)
                                                     <li><a href="{{ route('showwomenproducts',$w->id)}}">{{ $w->subcategory_name}}</a></li>

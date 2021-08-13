@@ -46,15 +46,15 @@
                             </textarea>
                             
                             <br/>
-                            <input type="text" name="country" required=" " placeholder="Country" style="color:black" >
+                            <input type="text" name="country" required=" " value="{{ $user->country }}" placeholder="Country" style="color:black" >
 							
                             <br/>
-                            <input type="text" name="province" required=" " placeholder="Province" style="color:black" >
+                            <input type="text" name="province" required=" " value="{{ $user->province }}" placeholder="Province" style="color:black" >
 							
 							<br/>
-                            <input type="text" name="city" required=" " placeholder="City" style="color:black" >
+                            <input type="text" name="city" required=" " placeholder="City" value="{{ $user->city }}" style="color:black" >
 							<br/>
-                            <input type="text" name="pincode" required=" " placeholder="Pincode" style="color:black" >
+                            <input type="text" name="pincode" required=" " placeholder="Postal Code" value="{{ $user->postal}}" style="color:black" >
 							<br/>
                             <h3>Want Local Pickup from Store</h3><br/>
                             <input type="radio" name="local_pickup" required=" " value="1"><span style="font-size:18px">Yes</span>

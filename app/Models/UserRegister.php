@@ -18,7 +18,11 @@ class UserRegister extends Model
        'email',
        'password',
        'id_proof',
-       'status'
+       'status',
+       'city',
+       'province',
+       'country',
+       'postal'
    ];
 
 }

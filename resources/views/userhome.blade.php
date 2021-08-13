@@ -8,13 +8,13 @@
 				<img src="{{ asset('usertemplate/images/1a.png') }}" alt="" />
 				<!--Slider Description example-->
 				<div class="slide-desc">
-					<h3>All Men's Products Here</h3>
+					<h3>All Men Products Here</h3>
 				</div>
 			</li>
 			<li>
 				<img src="{{ asset('usertemplate/images/1b.png') }}" alt="" />
 				  <div class="slide-desc">
-					<h3>All Women's Products Here</h3>
+					<h3>All Women Products Here</h3>
 				</div>
 			</li>
 			
@@ -68,7 +68,7 @@
 <!--brands-->
 	<div class="brands">
 		<div class="container">
-		<h3>Women's Store</h3>
+		<h3>Women Store</h3>
 			<div class="brands-agile">
 
 				@foreach($subwomen as $sub)
