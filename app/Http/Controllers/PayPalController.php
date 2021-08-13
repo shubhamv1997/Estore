@@ -31,8 +31,8 @@ class PayPalController extends Controller
             $orderid = $request->session()->get('orderid');
             $product['invoice_id'] = $orderid;
             $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
-            $product['return_url'] = "http://localhost:8000/payment-success/{$orderid}";
-            $product['cancel_url'] = "http://localhost:8000/cancel-payment/{$orderid}";
+            $product['return_url'] = "http://127.0.0.1:8001/payment-success/{$orderid}";
+            $product['cancel_url'] = "http://127.0.0.1:8001/cancel-payment/{$orderid}";
             // echo route('rhome'); die();
             $product['total'] = $total;
             
@@ -40,8 +40,7 @@ class PayPalController extends Controller
             $paypalModule = new ExpressCheckout;
             $res = $paypalModule->setExpressCheckout($product);
             $res = $paypalModule->setExpressCheckout($product, true);
-            // print_r($res);
-            // die();
+
             return redirect($res['paypal_link']);
         }
     }
